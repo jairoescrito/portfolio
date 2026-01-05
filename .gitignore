@@ -1,0 +1,16 @@
+# Archivos de R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Archivos de Python
+__pycache__/
+*.pyc
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos intermedios de RMarkdown/Quarto
+*.knit.md
+*.utf8.md
