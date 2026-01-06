@@ -1,26 +1,18 @@
 ---
-title: "Portafolio de Proyectos"
+title: "Inicio"
 format: html
 ---
 
-# **Jairo Alfredo Sánchez Díaz** 
-*Ingeniero Industrial \| BI & Data Science Specialist* *"Manufactura de información: transformando datos en conocimiento para decisiones estratégicas"*
+# Bienvenido a mi portafolio
 
-------------------------------------------------------------------------
+Soy **Jairo Alfredo Sánchez Díaz**, Ingeniero Industrial y especialista en Data Science & BI.  
+Me defino como un **ingeniero de procesos de información**: diseño, implemento, mejoro y optimizo procesos que convierten datos en conocimiento estratégico.
 
-## Sobre mí 
-Soy Ingeniero Industrial especializado en la **manufactura de información**: diseño, mejoro y optimizo procesos que convierten datos en conocimiento confiable. Combino experiencia en gestión de procesos y control interno con dominio técnico en Python, R, SQL y Power BI.
+---
 
-------------------------------------------------------------------------
+## Sobre mí
+- Experiencia en Python, R, SQL y Power BI  
+- Diseño de ETL y automatización de procesos  
+- Modelos predictivos y dashboards ejecutivos  
 
-## Contacto 
-- 📧 jairoescrito\@gmail.com 
-- 🌐 [LinkedIn](https://www.linkedin.com/in/jairoescrito) 
-- 💻 [GitHub](https://github.com/jairoescrito) 
-- 📍 Bogotá, Colombia
-
-## Proyectos destacados
-
--   **Automatización de dispersión comercial** – Python, Pandas, NumPy\
--   **Análisis del mercado global de videojuegos** – Python, Matplotlib, SciPy\
--   **Automatización de informes de PQR** – R, Tidyverse, Python
+Explora mis proyectos y conoce cómo transformo datos en valor para la toma de decisiones.

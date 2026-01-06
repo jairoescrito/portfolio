@@ -1,0 +1,19 @@
+---
+title: "Proyectos"
+format: html
+---
+
+# Proyectos destacados
+
+## 1. Optimización de procesos con Python
+Automatización de ETL para reducir tiempos de carga en un 40%.
+
+## 2. Dashboard de BI en Power BI
+Visualización de KPIs estratégicos para la gerencia de operaciones.
+
+## 3. Modelos predictivos en R
+Predicción de demanda con un 85% de precisión.
+
+---
+
+Puedes ver más en mi [GitHub](https://github.com/jairoescrito) o en mis publicaciones en RPubs.

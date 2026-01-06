@@ -1,30 +1,51 @@
 [
   {
+    "objectID": "proyectos.html",
+    "href": "proyectos.html",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Automatización de ETL para reducir tiempos de carga en un 40%.\n\n\n\nVisualización de KPIs estratégicos para la gerencia de operaciones.\n\n\n\nPredicción de demanda con un 85% de precisión.\n\nPuedes ver más en mi GitHub o en mis publicaciones en RPubs."
+  },
+  {
+    "objectID": "proyectos.html#optimización-de-procesos-con-python",
+    "href": "proyectos.html#optimización-de-procesos-con-python",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Automatización de ETL para reducir tiempos de carga en un 40%."
+  },
+  {
+    "objectID": "proyectos.html#dashboard-de-bi-en-power-bi",
+    "href": "proyectos.html#dashboard-de-bi-en-power-bi",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Visualización de KPIs estratégicos para la gerencia de operaciones."
+  },
+  {
+    "objectID": "proyectos.html#modelos-predictivos-en-r",
+    "href": "proyectos.html#modelos-predictivos-en-r",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Predicción de demanda con un 85% de precisión.\n\nPuedes ver más en mi GitHub o en mis publicaciones en RPubs."
+  },
+  {
+    "objectID": "contacto.html",
+    "href": "contacto.html",
+    "title": "Contacto",
+    "section": "",
+    "text": "Contáctame\n\n📧 Email: jairoescrito@gmail.com\n\n🌐 LinkedIn: Perfil\n\n💻 GitHub: Repositorio\n\n📍 Bogotá, Colombia"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Portafolio de Proyectos",
+    "title": "Inicio",
     "section": "",
-    "text": "Ingeniero Industrial | BI & Data Science Specialist “Manufactura de información: transformando datos en conocimiento para decisiones estratégicas”\n\n\n\nSoy Ingeniero Industrial especializado en la manufactura de información: diseño, mejoro y optimizo procesos que convierten datos en conocimiento confiable. Combino experiencia en gestión de procesos y control interno con dominio técnico en Python, R, SQL y Power BI.\n\n\n\n\n\n📧 jairoescrito@gmail.com\n🌐 LinkedIn\n💻 GitHub\n📍 Bogotá, Colombia\n\n\n\n\n\nAutomatización de dispersión comercial – Python, Pandas, NumPy\n\nAnálisis del mercado global de videojuegos – Python, Matplotlib, SciPy\n\nAutomatización de informes de PQR – R, Tidyverse, Python"
+    "text": "Soy Jairo Alfredo Sánchez Díaz, Ingeniero Industrial y especialista en Data Science & BI.\nMe defino como un ingeniero de procesos de información: diseño, implemento, mejoro y optimizo procesos que convierten datos en conocimiento estratégico.\n\n\n\n\nExperiencia en Python, R, SQL y Power BI\n\nDiseño de ETL y automatización de procesos\n\nModelos predictivos y dashboards ejecutivos\n\nExplora mis proyectos y conoce cómo transformo datos en valor para la toma de decisiones."
   },
   {
     "objectID": "index.html#sobre-mí",
     "href": "index.html#sobre-mí",
-    "title": "Portafolio de Proyectos",
+    "title": "Inicio",
     "section": "",
-    "text": "Soy Ingeniero Industrial especializado en la manufactura de información: diseño, mejoro y optimizo procesos que convierten datos en conocimiento confiable. Combino experiencia en gestión de procesos y control interno con dominio técnico en Python, R, SQL y Power BI."
-  },
-  {
-    "objectID": "index.html#contacto",
-    "href": "index.html#contacto",
-    "title": "Portafolio de Proyectos",
-    "section": "",
-    "text": "📧 jairoescrito@gmail.com\n🌐 LinkedIn\n💻 GitHub\n📍 Bogotá, Colombia"
-  },
-  {
-    "objectID": "index.html#proyectos-destacados",
-    "href": "index.html#proyectos-destacados",
-    "title": "Portafolio de Proyectos",
-    "section": "",
-    "text": "Automatización de dispersión comercial – Python, Pandas, NumPy\n\nAnálisis del mercado global de videojuegos – Python, Matplotlib, SciPy\n\nAutomatización de informes de PQR – R, Tidyverse, Python"
+    "text": "Experiencia en Python, R, SQL y Power BI\n\nDiseño de ETL y automatización de procesos\n\nModelos predictivos y dashboards ejecutivos\n\nExplora mis proyectos y conoce cómo transformo datos en valor para la toma de decisiones."
   }
 ]

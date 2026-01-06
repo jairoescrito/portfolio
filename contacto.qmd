@@ -1,0 +1,14 @@
+---
+title: "Contacto"
+format: html
+---
+
+# Contáctame
+
+- 📧 **Email:** jairoescrito@gmail.com  
+- 🌐 **LinkedIn:** [Perfil](https://www.linkedin.com/in/jairoescrito)  
+- 💻 **GitHub:** [Repositorio](https://github.com/jairoescrito)  
+- 📍 Bogotá, Colombia
+
+
+
