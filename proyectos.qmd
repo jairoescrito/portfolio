@@ -16,4 +16,4 @@ Predicción de demanda con un 85% de precisión.
 
 ---
 
-Puedes ver más en mi [GitHub](https://github.com/jairoescrito) o en mis publicaciones en RPubs.
+Puedes ver más en mi [GitHub](https://github.com/jairoescrito) o en mis publicaciones en [RPubs](https://rpubs.com/jairoescrito).
