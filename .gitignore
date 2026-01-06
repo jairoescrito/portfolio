@@ -14,3 +14,6 @@ Thumbs.db
 # Archivos intermedios de RMarkdown/Quarto
 *.knit.md
 *.utf8.md
+
+/.quarto/
+**/*.quarto_ipynb
