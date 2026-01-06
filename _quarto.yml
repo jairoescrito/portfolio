@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs   # aquí le dices a Quarto que genere el sitio en /docs
 
 website:
   title: "Portafolio de Jairo"
@@ -14,4 +15,5 @@ website:
 
 format:
   html:
-    theme: cosmo   # puedes cambiar el tema (cosmo, flatly, minty, etc.)
+    theme: cosmo
+
