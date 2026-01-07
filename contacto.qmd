@@ -3,12 +3,11 @@ title: "Contacto"
 format: html
 ---
 
-# Contáctame
+## 📬
 
-- 📧 **Email:** jairoescrito@gmail.com  
-- 🌐 **LinkedIn:** [Perfil](https://www.linkedin.com/in/jairoescrito)  
-- 💻 **GitHub:** [Repositorio](https://github.com/jairoescrito)  
-- 📍 Bogotá, Colombia
-
-
+- <i class="fa-solid fa-envelope"></i> **Email:** jairoescrito@gmail.com  
+- <i class="fa-brands fa-linkedin"></i> **LinkedIn:** [Perfil](https://www.linkedin.com/in/jairoescrito)  
+- <i class="fa-brands fa-github"></i> **GitHub:** [Repositorio](https://github.com/jairoescrito)  
+- <i class="fa-brands fa-r-project"></i> **Rpubs:** [Repositorio](https://rpubs.com/jairoescrito)  
+- <i class="fa-solid fa-location-dot"></i> Bogotá, Colombia
 

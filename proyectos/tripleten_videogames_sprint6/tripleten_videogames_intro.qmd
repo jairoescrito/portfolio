@@ -1,0 +1,26 @@
+---
+title: "Mercado mundial de videojuegos - Introducción"
+format: html
+---
+
+## Planteamiento del problema y preguntas de análisis
+
+Se dispone de un conjunto de datos de ventas recopilado por una tienda de videojuegos. La empresa busca comprender el comportamiento del mercado en relación con los géneros de los juegos, las plataformas en las que fueron desarrollados, las diferencias entre regiones del mundo y la evolución de los lanzamientos a lo largo del tiempo.
+
+El objetivo es realizar un análisis que proporcione información suficiente a los responsables de la gestión y administración de la tienda para responder preguntas clave como:
+
+- ¿Cuál es el comportamiento de los lanzamientos de juegos por año?
+- ¿Qué tan diferentes son las ventas entre plataformas y cómo varían en el tiempo?
+- ¿Qué plataformas son más populares y cómo evoluciona su popularidad?
+- ¿Cuál es el ciclo de vida de una plataforma de videojuegos?
+- ¿Cuáles son las plataformas líderes del mercado y cuáles podrían ser rentables en el futuro?
+- ¿Las reseñas de los usuarios influyen en las ventas de videojuegos?
+- ¿Cuáles son los géneros de videojuegos más rentables?
+- ¿Cómo se comporta el mercado en cada región respecto a plataformas y géneros?
+- ¿Existen diferencias en las calificaciones promedio de los usuarios entre Xbox One y PC?
+- ¿Existen diferencias en las calificaciones promedio de los géneros Acción y Deportes?
+
+Al finalizar el análisis, los interesados deberán contar con el conocimiento suficiente sobre el comportamiento del mercado para tomar decisiones estratégicas acertadas en relación con las ventas del año siguiente.
+
+
+👉 [Ver análisis completo](tripleten_videogames_case.qmd)

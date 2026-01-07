@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs   # aquí le dices a Quarto que genere el sitio en /docs
+  output-dir: docs   # carpeta donde se genera el sitio
 
 website:
   title: "Portafolio de Jairo"
@@ -9,11 +9,37 @@ website:
       - text: "Inicio"
         href: index.qmd
       - text: "Proyectos"
-        href: proyectos.qmd
+        menu:
+          - text: "Mercado mundial de videojuegos"
+            href: proyectos/tripleten_videogames_sprint6/tripleten_videogames_intro.qmd
       - text: "Contacto"
         href: contacto.qmd
 
 format:
   html:
     theme: cosmo
+    toc: true
+    page-layout: full   # ancho completo para gráficos
+    code-overflow: wrap   # agrega scroll horizontal en bloques de código
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+          <style>
+            /* Gráficas: que nunca se recorten */
+            img, .quarto-figure {
+              max-width: 100% !important;
+              height: auto !important;
+            }
+            /* Bloques de código: permitir scroll horizontal */
+            pre code {
+              white-space: pre !important;
+              overflow-x: auto !important;
+              display: block;
+            }
+          </style>
 
+execute: 
+  fig-width: 8 
+  fig-height: 5 
+  out-width: 100% 
+  code-overflow: wrap

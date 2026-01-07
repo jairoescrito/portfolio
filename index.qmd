@@ -11,7 +11,7 @@ Me defino como un **ingeniero de procesos de información**: diseño, implemento
 ---
 
 ## Sobre mí
-- Experiencia en Python, R, SQL y Power BI  
+- Experiencia en Excel, Power Query, Power Pivot, R, Python, SQL, Power BI y Looker  
 - Diseño de ETL y automatización de procesos  
 - Modelos predictivos y dashboards ejecutivos  
 
