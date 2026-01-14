@@ -1,8 +1,9 @@
 ---
-title: "Monitoreo estratégico de la ejecución física y financiera — Introducción"
-author: "Jairo"
+title: "Monitoreo estratégico de la ejecución física y financiera"
 format: html
 ---
+
+------------------------------------------------------------------------
 
 # 1. Acerca de la entidad
 
@@ -24,6 +25,8 @@ Existen algunas particularidades en este proceso de seguimiento:
 -   También existe el reporte de avance físico rezagado: se registran metas cumplidas en la vigencia anterior que no pudieron reportarse a tiempo por falta de información o por la dinámica propia de la entidad. Esto puede modificar los resultados presentados al cierre de un año durante los primeros meses del siguiente.
 
 Finalmente, el Área de Planeación y Proyectos debe presentar a la junta directiva los resultados de ejecución, tanto anuales como acumulados. Entre las preguntas que se responden están: ¿cómo va la ejecución del presupuesto?, ¿cómo avanza la inversión y la producción?, ¿qué tanto se ha logrado en los productos?, ¿qué áreas presentan retrasos?, ¿cómo se ve la ejecución a nivel de proyectos y programas?
+
+------------------------------------------------------------------------
 
 # 2. Proceso de seguimiento y evaluación de la ejecución del plan estratégico
 
@@ -119,6 +122,8 @@ El modelo actual presenta diversas limitaciones que afectan la eficiencia, la tr
 
 -   **Riesgo por actualizaciones parciales**: La modificación en el alcance de un producto exige actualizar múltiples variables físicas (meta física, ponderaciones por cuatrienio y vigencia, responsable de ejecución, etc.) y financieras (asignación total, por fuente y por vigencia) en diferentes hojas. Si alguna de estas no se actualiza correctamente, los resultados reportados pueden ser inconsistentes o erróneos.
 
+------------------------------------------------------------------------
+
 # 3. Estado del proceso después de la intervención
 
 Tras el análisis del proceso y la revisión de las diferentes fuentes de datos, se identificó cómo se genera la información desde el ERP. Con base en ello, se diseñó un proceso de transformación de datos semiautomático, utilizando exclusivamente las herramientas disponibles en la entidad —en este caso, Excel—, dado que no existen recursos para adquirir o arrendar servicios adicionales.
@@ -158,13 +163,17 @@ La vista de diagrama de datos, de la segunda etapa, que proporciona Power Pivot 
 Para el seguimiento del plan estratégico se definieron cuatro medidas, orientadas a mostrar tanto la ejecución de los productos como la actualización de la información disponible.
 
 | Medida | Detalle |
-|------------------------|------------------------------------------------|
+|-------------------------|-----------------------------------------------|
 | Actualizacion | Extrae la fecha de la última actualización de los datos de avance en la ejecución de los productos del plan estratégico. |
 | EjecucionGlobal | Suma la ejecución ponderada global de los cuatro años del periodo administrativo en curso, asignando un peso del 25% a cada año. |
 | EjecucionPonderadaGlobal | Calcula el porcentaje de ejecución de los productos considerando el peso asignado en el plan estratégico (el peso de cada producto dentro del cuatrienio). El valor incluye los rezagos agregados posteriormente. |
 | EjecucionReal | Calcula el porcentaje de ejecución de los productos considerando el peso asignado en la vigencia (el peso de cada producto para un año específico). El valor incluye los rezagos agregados posteriormente. |
 
+
+
 El desarrollo de la fórmula de una de las medidas aplicadas al avance físico se muestra a continuación.
+
+------------------------------------------------------------------------
 
 ``` dax
 EjecucionReal:=
@@ -243,6 +252,9 @@ SWITCH(
  )
 ```
 
+------------------------------------------------------------------------
+
+
 ### 3.1.2 Avance Financiero
 
 En el flujo de datos se definieron inicialmente 27 medidas relacionadas con el avance financiero. Sin embargo, se han identificado oportunidades de mejora que permitirían reducir su número a menos de la mitad, manteniendo la consistencia y precisión en el análisis.
@@ -302,9 +314,8 @@ El siguiente grupo de medidas mantiene la misma lógica, pero se limita exclusiv
 
 Finalmente, se cuenta con un conjunto de medidas que funcionan de manera transversal dentro del modelo. En varios casos se utilizan más como variables de apoyo para el cálculo de otras medidas, aportando consistencia y precisión en los resultados.
 
-|  |  |
-|-------------------------------|-----------------------------------------|
 | Medida | Detalle |
+|-------------------------------|-----------------------------------------|
 | EsperadoEjecutado | Calcula el valor de ejecución presupuestal que debería llevar la entidad hasta el mes finalizado en la vigencia actual |
 | Porc_Ejec_Esperado | Calcula el porcentaje del presupuesto ejecutado (obligación) en función de *EsperadoEjecutado*. |
 | FechaMaxFin | Extrae la fecha de la última actualización de los datos de ejecución presupuestal. |
@@ -312,6 +323,8 @@ Finalmente, se cuenta con un conjunto de medidas que funcionan de manera transve
 | VigenciaActFin | Extrae el año de la actualización más reciente de los datos de ejecución presupuestal. |
 
 El desarrollo de la fórmula de unas de las medidas aplicadas al avance financiero se muestra a continuación.
+
+------------------------------------------------------------------------
 
 ``` dax
 Ppto_Definitivo:=
@@ -321,6 +334,8 @@ DIVIDE(
         1000000,
         0)
 ```
+
+------------------------------------------------------------------------
 
 ``` dax
 Ppto_Definitivo_VA:=
@@ -339,6 +354,8 @@ SUMX(
 )
 ```
 
+------------------------------------------------------------------------
+
 ``` dax
 EsperadoEjecutado:=
 DIVIDE(
@@ -348,6 +365,8 @@ DIVIDE(
 *
 [MesVencido]
 ```
+
+------------------------------------------------------------------------
 
 ### 3.1.3 Avance Físico Rezagado
 
@@ -381,12 +400,14 @@ Es importante tener en cuenta que los ponderados de producto por vigencia no nec
 
 El desarrollo de la fórmula de unas de las medidas aplicadas al avance físico de rezago se muestra a continuación.
 
-``` DAX
+------------------------------------------------------------------------
+
+``` dax
 AvanceRezago2024:=
 VAR VigenciaMax=2024
-		
+        
 VAR FechaMax=
-	MAX(Fct_AvanceFisico_Rezago[Corte_Reporte])
+    MAX(Fct_AvanceFisico_Rezago[Corte_Reporte])
 
 RETURN
 
@@ -406,7 +427,7 @@ DIVIDE(
  VAR Vigencia = 2024
 
  VAR Meta = 
- 	RELATED(Dim_Productos[Meta_2024]) 
+    RELATED(Dim_Productos[Meta_2024]) 
  
  VAR AvanceRes =
  DIVIDE((Fct_AvanceFisico_Rezago[Avance_Rezago]), Meta, 0)
@@ -415,7 +436,7 @@ DIVIDE(
  IF(AvanceRes > 1, 1, AvanceRes)
 
  VAR Ponderado = 
- 	Fct_AvanceFisico_Rezago[Pond_2024]
+    Fct_AvanceFisico_Rezago[Pond_2024]
 
  RETURN Ejecucion * Ponderado
  ),
@@ -431,12 +452,14 @@ DIVIDE(
 )
 ```
 
-``` DAX
+------------------------------------------------------------------------
+
+``` dax
 AvanceRezago2024_PondCuatrienio:=
 VAR VigenciaMax=2024
-		
+        
 VAR FechaMax=
-	MAX(Fct_AvanceFisico_Rezago[Corte_Reporte])
+    MAX(Fct_AvanceFisico_Rezago[Corte_Reporte])
 
 RETURN
 
@@ -456,7 +479,7 @@ DIVIDE(
  VAR Vigencia = 2024
 
  VAR Meta = 
- 	RELATED(Dim_Productos[Meta_2024]) 
+    RELATED(Dim_Productos[Meta_2024]) 
  
  VAR AvanceRes =
  DIVIDE((Fct_AvanceFisico_Rezago[Avance_Rezago]), Meta, 0)
@@ -465,7 +488,7 @@ DIVIDE(
  IF(AvanceRes > 1, 1, AvanceRes)
 
  VAR Ponderado = 
- 	Fct_AvanceFisico_Rezago[Pond_Cuatrienio]
+    Fct_AvanceFisico_Rezago[Pond_Cuatrienio]
 
  RETURN Ejecucion * Ponderado
  ),
@@ -481,7 +504,9 @@ DIVIDE(
 )
 ```
 
-# 4. Conclusiones Generales 
+------------------------------------------------------------------------
+
+# 4. Conclusiones Generales
 
 La implementación del nuevo proceso de gestión de información presupuestal y física del plan estratégico ha mejorado significativamente la capacidad de la entidad para compartir resultados de manera más sencilla, facilitar la administración de datos y mantener la información actualizada al ritmo de los reportes generados desde el ERP.
 

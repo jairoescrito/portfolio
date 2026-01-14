@@ -12,6 +12,8 @@ website:
         menu:
           - text: "Mercado mundial de videojuegos"
             href: proyectos/tripleten_videogames_sprint6/tripleten_videogames_intro.qmd
+          - text: "Seguimiento y monitoreo Plan Estratégico"
+            href: proyectos/freelance_monitoreo_estrategico/monitoreo_estrategico.qmd
       - text: "Contacto"
         href: contacto.qmd
 

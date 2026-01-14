@@ -151,6 +151,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../proyectos/tripleten_videogames_sprint6/tripleten_videogames_intro.html">
  <span class="dropdown-text">Mercado mundial de videojuegos</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../proyectos/freelance_monitoreo_estrategico/monitoreo_estrategico.html">
+ <span class="dropdown-text">Seguimiento y monitoreo Plan Estratégico</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -294,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="acceder-a-los-datos" class="level1">
 <h1>1. Acceder a los datos</h1>
-<div id="628b7ea2" class="cell" data-execution_count="1">
+<div id="17cd4caf" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importar librerías</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -303,52 +307,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="leer-el-conjunto-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="leer-el-conjunto-de-datos">1.1 Leer el conjunto de datos</h2>
-<div id="76c0d4cd" class="cell" data-execution_count="2">
+<div id="e52a49ec" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>games_raw <span class="op">=</span> pd.read_csv(<span class="st">'/home/jairoescrito/OneDrive/Documentos/CV/portfolio_github/proyectos/tripleten_videogames_sprint6/games.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># visualización inicial de los datos</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(games_raw.sample(<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                 Name Platform  Year_of_Release         Genre  \
-13340                       V-Rally 3      GBA           2002.0        Racing   
-15703               Chili Con Carnage      PSP           2007.0       Shooter   
-1998      Need for Speed: Most Wanted       XB           2005.0        Racing   
-14976        Rock 'N' Roll Adventures      Wii           2007.0      Platform   
-6128           Junior Brain Trainer 2       DS           2010.0          Misc   
-14247               Monster Guardians      GBA           2001.0  Role-Playing   
-14450                  Bad Apple Wars      PSV           2015.0        Action   
-1166                      NASCAR 2000       PS           1999.0        Racing   
-14174  Tokyo Majin Gakuen: Kenfuuchou       DS           2008.0     Adventure   
-3233           Test Drive Unlimited 2      PS3              NaN        Racing   
+<pre><code>                                                    Name Platform  \
+13435                    The Misadventures of Tron Bonne       PS   
+3395                                 2002 FIFA World Cup      PS2   
+8009                                     Just Dance 2017      Wii   
+15985                  Romance of the Three Kingdoms XII     WiiU   
+10637                   Aidyn Chronicles: The First Mage      N64   
+3084                                 LEGO Jurassic World     XOne   
+846                                         Just Dance 3     X360   
+12315  Disney's Magical Quest 2 Starring Mickey and M...      GBA   
+12477                                      Legend of Kay       DS   
+399                                         WWF War Zone       PS   
 
-       NA_sales  EU_sales  JP_sales  Other_sales  Critic_Score User_Score  \
-13340      0.03      0.01      0.00         0.00          82.0        tbd   
-15703      0.00      0.01      0.00         0.00          74.0        8.2   
-1998       0.53      0.46      0.00         0.05          83.0        8.8   
-14976      0.02      0.00      0.00         0.00           NaN        tbd   
-6128       0.04      0.20      0.00         0.03           NaN        tbd   
-14247      0.00      0.00      0.03         0.00           NaN        NaN   
-14450      0.00      0.00      0.03         0.00           NaN        NaN   
-1166       0.88      0.60      0.00         0.10           NaN        NaN   
-14174      0.00      0.00      0.03         0.00           NaN        NaN   
-3233       0.16      0.34      0.01         0.12          70.0        6.1   
+       Year_of_Release         Genre  NA_sales  EU_sales  JP_sales  \
+13435           1999.0     Adventure      0.03      0.02      0.00   
+3395            2002.0        Sports      0.21      0.17      0.16   
+8009            2016.0          Misc      0.06      0.11      0.00   
+15985           2012.0      Strategy      0.00      0.00      0.02   
+10637           2001.0  Role-Playing      0.08      0.02      0.00   
+3084            2015.0        Action      0.38      0.22      0.00   
+846             2011.0          Misc      1.47      0.39      0.00   
+12315           2003.0        Action      0.05      0.02      0.00   
+12477           2010.0        Action      0.06      0.00      0.00   
+399             1998.0      Fighting      2.47      0.76      0.00   
 
-      Rating  
-13340      E  
-15703      M  
-1998       T  
-14976      E  
-6128       E  
-14247    NaN  
-14450    NaN  
-1166     NaN  
-14174    NaN  
-3233       T  </code></pre>
+       Other_sales  Critic_Score User_Score Rating  
+13435         0.00           NaN        NaN    NaN  
+3395          0.06          73.0        5.6      E  
+8009          0.01           NaN        tbd   E10+  
+15985         0.00           NaN        NaN    NaN  
+10637         0.00           NaN        NaN    NaN  
+3084          0.06          70.0        6.7   E10+  
+846           0.16          70.0        7.7   E10+  
+12315         0.00          63.0        tbd      E  
+12477         0.00           NaN        tbd      E  
+399           0.13           NaN        NaN    NaN  </code></pre>
 </div>
 </div>
 </section>
 <section id="revisar-la-información-general-del-conjunto-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="revisar-la-información-general-del-conjunto-de-datos">1.2 Revisar la información general del conjunto de datos</h2>
-<div id="6ce535b3" class="cell" data-execution_count="3">
+<div id="5be27bec" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Listado de variables</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>variables_raw <span class="op">=</span> <span class="bu">list</span>(games_raw.columns)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Variables del conjunto de datos:'</span>)</span>
@@ -387,7 +391,7 @@ None</code></pre>
 </section>
 <section id="preparar-los-datos" class="level1">
 <h1>2. Preparar los datos</h1>
-<div id="88881bc2" class="cell" data-execution_count="4">
+<div id="a3cbbf7c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modificar nombres de las variables</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>variables <span class="op">=</span> [nombre.lower() <span class="cf">for</span> nombre <span class="kw">in</span> variables_raw]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mofidicar los nombre de las columnas</span></span>
@@ -419,7 +423,7 @@ memory usage: 1.4+ MB</code></pre>
 </div>
 <section id="detalles-de-las-variables" class="level2">
 <h2 class="anchored" data-anchor-id="detalles-de-las-variables">2.1 Detalles de las variables</h2>
-<div id="f357dbde" class="cell" data-execution_count="5">
+<div id="dfb4504b" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>games.columns[<span class="dv">1</span>]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(games.columns)<span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> games[games.columns[i<span class="op">+</span><span class="dv">1</span>]].dtype <span class="op">==</span> <span class="st">'object'</span>:</span>
@@ -589,7 +593,7 @@ Valores únicos: 8</code></pre>
 <p>En este caso solo la variable <i>user_score</i> debería ser modificada, los valores tomados “to be determined” se decide manejarlos como NaN, si bien no aparece como un NaN explicito, en la practica resulta serlo ya que: user_score es una variable de calificación numérica al no tener un número como calificación se entiende como ausencia de la misma En el caso de la variable <i>year_of_release</i> se pasó de tipo decimal a tipo entero</p>
 <section id="actualización-de-tipo-de-variables-numéricas" class="level3">
 <h3 class="anchored" data-anchor-id="actualización-de-tipo-de-variables-numéricas">2.1.1 Actualización de tipo de variables numéricas</h3>
-<div id="152cda43" class="cell" data-execution_count="6">
+<div id="8e8ace87" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir la variable user_score a numṕerica</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>games[<span class="st">'user_score'</span>] <span class="op">=</span> pd.to_numeric(games[<span class="st">'user_score'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir la variable year_of_release a entero</span></span>
@@ -599,7 +603,7 @@ Valores únicos: 8</code></pre>
 </section>
 <section id="identificación-de-valores-ausentes" class="level2">
 <h2 class="anchored" data-anchor-id="identificación-de-valores-ausentes">2.2 Identificación de valores ausentes</h2>
-<div id="b1d61663" class="cell" data-execution_count="7">
+<div id="4e88f7cf" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># De acuerdo a la información inicial del conjunto de datos, existen varias columnas con NaN:</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> valoresAusentes(data):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
@@ -642,7 +646,7 @@ Valores únicos: 8</code></pre>
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'No hay variables con NaN'</span>)</span>
 <span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> var_nan</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="9f2df4d1" class="cell" data-execution_count="8">
+<div id="d5eb6ca4" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>variables_con_nan <span class="op">=</span> valoresAusentes(games)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -670,7 +674,7 @@ Es una variable no numérica que toma los siguientes valores:
 </section>
 <section id="tratamiento-de-valores-ausentes" class="level2">
 <h2 class="anchored" data-anchor-id="tratamiento-de-valores-ausentes">2.3 Tratamiento de valores ausentes</h2>
-<div id="70bcc9e9" class="cell" data-execution_count="9">
+<div id="c1b3e153" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"variables a tratar:</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> variables_con_nan:</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key,value <span class="kw">in</span> var.items():</span>
@@ -728,7 +732,7 @@ Name: count, dtype: int64
 <p>Existen dos filas con 5 valores nulo y 85 con 4, en total 87 registros con ausencia de información considerable</p>
 <section id="registros-con-5-nan" class="level3">
 <h3 class="anchored" data-anchor-id="registros-con-5-nan">2.3.1 Registros con 5 NaN</h3>
-<div id="15fb81d8" class="cell" data-execution_count="10">
+<div id="4286dd6d" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(games.loc[count_nan[count_nan <span class="op">==</span> <span class="dv">5</span>].index])</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(games.loc[count_nan[count_nan <span class="op">==</span> <span class="dv">5</span>].index,[<span class="st">'na_sales'</span>,<span class="st">'eu_sales'</span>,<span class="st">'jp_sales'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -748,7 +752,7 @@ Name: count, dtype: int64
 </section>
 <section id="variable-name" class="level3">
 <h3 class="anchored" data-anchor-id="variable-name">2.3.2 Variable name</h3>
-<div id="95ca2764" class="cell" data-execution_count="11">
+<div id="fc72492f" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(games[games[<span class="st">'name'</span>].isna()])</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>games[<span class="st">'name'</span>] <span class="op">=</span> games[<span class="st">'name'</span>].fillna(<span class="st">'unknown'</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar espacios en blanco en los nombres</span></span>
@@ -769,52 +773,52 @@ Name: count, dtype: int64
 <h3 class="anchored" data-anchor-id="variable-year_of_release">2.3.3 Variable year_of_release</h3>
 <section id="variable-year_of_release-parte-1" class="level4">
 <h4 class="anchored" data-anchor-id="variable-year_of_release-parte-1">2.3.3.1 Variable year_of_release parte 1</h4>
-<div id="1cbf99d4" class="cell" data-execution_count="12">
+<div id="057cd48b" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(games[games[<span class="st">'year_of_release'</span>].isna()].sample(<span class="dv">10</span>))</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>games[<span class="st">'year_of_release'</span>] <span class="op">=</span> games[<span class="st">'year_of_release'</span>].fillna(<span class="dv">9999</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                                 name platform  \
-14210                                      Sabre Wulf      GBA   
-15998                                     Jet Impulse       DS   
-6299                                     Flag Capture     2600   
-1585                                           Combat     2600   
-13929                                 Sega Rally 2006      PS2   
-15966                 Dinotopia: The Sunstone Odyssey       GC   
-16157                    Aquaman: Battle for Atlantis       XB   
-9043                                      Bejeweled 3      PS3   
-8364                             Sword of the Samurai      PS2   
-7391   Valkyria Chronicles III: Unrecorded Chronicles      PSP   
+<pre><code>                                   name platform  year_of_release  \
+11000                       Demon Chaos      PS2             &lt;NA&gt;   
+456          LEGO Batman: The Videogame      Wii             &lt;NA&gt;   
+3704              Def Jam: Fight for NY       XB             &lt;NA&gt;   
+14105                Half-Minute Hero 2      PSP             &lt;NA&gt;   
+4373            Silent Hill: Homecoming     X360             &lt;NA&gt;   
+5326                          Tropico 4     X360             &lt;NA&gt;   
+14449  Fullmetal Alchemist: Brotherhood      PSP             &lt;NA&gt;   
+3233             Test Drive Unlimited 2      PS3             &lt;NA&gt;   
+15292                    Steal Princess       DS             &lt;NA&gt;   
+9761     Saru! Get You! Million Monkeys      PS2             &lt;NA&gt;   
 
-       year_of_release       genre  na_sales  eu_sales  jp_sales  other_sales  \
-14210             &lt;NA&gt;    Platform      0.02      0.01      0.00         0.00   
-15998             &lt;NA&gt;  Simulation      0.00      0.00      0.02         0.00   
-6299              &lt;NA&gt;      Action      0.25      0.02      0.00         0.00   
-1585              &lt;NA&gt;      Action      1.17      0.07      0.00         0.01   
-13929             &lt;NA&gt;      Racing      0.00      0.00      0.04         0.00   
-15966             &lt;NA&gt;      Action      0.01      0.00      0.00         0.00   
-16157             &lt;NA&gt;      Action      0.01      0.00      0.00         0.00   
-9043              &lt;NA&gt;      Puzzle      0.13      0.00      0.00         0.02   
-8364              &lt;NA&gt;    Fighting      0.00      0.00      0.17         0.00   
-7391              &lt;NA&gt;    Strategy      0.00      0.00      0.21         0.00   
+              genre  na_sales  eu_sales  jp_sales  other_sales  critic_score  \
+11000        Action      0.00      0.00      0.09         0.00           NaN   
+456          Action      1.80      0.97      0.00         0.29          74.0   
+3704       Fighting      0.43      0.10      0.00         0.02          84.0   
+14105  Role-Playing      0.00      0.00      0.04         0.00           NaN   
+4373         Action      0.25      0.15      0.00         0.04          70.0   
+5326       Strategy      0.20      0.12      0.00         0.03          77.0   
+14449        Action      0.00      0.00      0.03         0.00           NaN   
+3233         Racing      0.16      0.34      0.01         0.12          70.0   
+15292      Platform      0.02      0.00      0.00         0.00          60.0   
+9761       Platform      0.00      0.00      0.12         0.00           NaN   
 
-       critic_score  user_score rating  
-14210          75.0         8.0      E  
-15998           NaN         NaN    NaN  
-6299            NaN         NaN    NaN  
-1585            NaN         NaN    NaN  
-13929           NaN         NaN    NaN  
-15966          50.0         NaN      T  
-16157          26.0         2.7      T  
-9043           76.0         8.2      E  
-8364            NaN         NaN    NaN  
-7391            NaN         NaN    NaN  </code></pre>
+       user_score rating  
+11000         NaN    NaN  
+456           7.9   E10+  
+3704          8.5      M  
+14105         NaN    NaN  
+4373          6.9      M  
+5326          7.5      T  
+14449         NaN    NaN  
+3233          6.1      T  
+15292         NaN   E10+  
+9761          NaN    NaN  </code></pre>
 </div>
 </div>
 <p>En términos numéricos toma valores entre 1980 y 2016, no se tiene un criterio robusto para reemplazar los valores ausentes sin distorcionar la información,es decir, actualmente se tienen 219 registros sin valor de año de lanzamiento, reemplazar estoa valores por la media afectaría la distribución de los datos recpecto al año de lanzamiento sin tener certeza que estos valores se ajusten a la realidad, modificar el dato por la moda tendría un efecto similar, a su vez, el efecto por total de ventas por año podría generar datos que no se ajustan a la realidad. En este caso lo recomendable sería consultar e investigar el dato real para cada juego si es el caso que obligarotiamente deben desaparecer los NaN. Se hace el reemplazo por un valor generico de 9999.</p>
 </section>
 <section id="variable-year_of_release-parte-2" class="level4">
 <h4 class="anchored" data-anchor-id="variable-year_of_release-parte-2">2.3.3.2 Variable year_of_release parte 2</h4>
-<div id="bf167832" class="cell" data-execution_count="13">
+<div id="ee4288dc" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe auxiliar con los juegos que no tienen año definido y que se han reemplazado con 9999</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>games_no_year <span class="op">=</span> games[games[<span class="st">'year_of_release'</span>]<span class="op">==</span><span class="dv">9999</span>].reset_index()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1980</span>,<span class="dv">2017</span>,<span class="dv">1</span>)) <span class="co"># Crear una lista con los años que abarcan el dataset</span></span>
@@ -838,7 +842,7 @@ Name: count, dtype: int64
 </section>
 <section id="variable-year_of_release-parte-3" class="level4">
 <h4 class="anchored" data-anchor-id="variable-year_of_release-parte-3">2.3.3.3 Variable year_of_release parte 3</h4>
-<div id="1bb90538" class="cell" data-execution_count="14">
+<div id="62805414" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer y crear una lista con los nombres de los juegos que aún no tienen año</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>list_games_no_year <span class="op">=</span> games_no_year[<span class="st">'name'</span>].drop_duplicates().tolist()</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los juegos que aparecen en la lista de juegos sin año de lanzamiento en la lista global de juego y verificar si algunos de estos aparecen más de una vez y con uno de los registros con año de lanzamiento</span></span>
@@ -875,7 +879,7 @@ Name: count, dtype: int64
 </section>
 <section id="variable-genre" class="level3">
 <h3 class="anchored" data-anchor-id="variable-genre">2.3.4 Variable genre</h3>
-<div id="5f9c0269" class="cell" data-execution_count="15">
+<div id="dc08b9ba" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Existen apenas 2 registros sin valor para el género de juego. Los datos para los generos de juego son:</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(games[<span class="st">'genre'</span>].value_counts())</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -912,7 +916,7 @@ Name: count, dtype: int64
 <p>Rating tiene un 40.48% de NaN, es decir, casi el 60% de los registros tendrían datos disponibles en esta variable para “proyectar” los faltantes. El rating de los videojuegos dependen de varios factores (https://www.esrb.org/ratings-guide/es/) por lo que el uso de valores como la moda resultarían poco confiables. Dividirlos por genero, verificar la clasificación por género y evaluar si es posible imputar los valores nulos por moda por genero sería una opción</p>
 <section id="variable-rating-parte-1" class="level4">
 <h4 class="anchored" data-anchor-id="variable-rating-parte-1">2.3.5.1 Variable rating parte 1</h4>
-<div id="224c29ba" class="cell" data-execution_count="16">
+<div id="cfd5d216" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataset auxiliar sin incluir los NaN</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>games_rating <span class="op">=</span> games[<span class="op">~</span>games[<span class="st">'rating'</span>].isna()]</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportamiento de rating</span></span>
@@ -931,7 +935,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <p>Los registros del dataset global que tienen datos para rating presentan cuatro categorías relevantes: E, T, M y E10+. En estas categorias debería estar la imputación de valores faltantes.</p>
-<div id="c2e89e66" class="cell" data-execution_count="17">
+<div id="61d283a1" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportamiento de genre</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>games_rating[<span class="st">'genre'</span>].value_counts().sort_values(ascending <span class="op">=</span> <span class="va">True</span>).plot(kind<span class="op">=</span><span class="st">'barh'</span>, color<span class="op">=</span><span class="st">'orange'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>, width <span class="op">=</span> <span class="fl">0.9</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribución de juegos por género'</span>)</span>
@@ -948,7 +952,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <p>Los juegos de acción y deportes son los más frecuentes en el catalogo de juegos (que a su vez tienen información de rating)</p>
-<div id="09ccb4e5" class="cell" data-execution_count="18">
+<div id="5720bad6" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comportamiento de las variables rating y genre</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear una tabla de dos estradas: genre y rating</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>pivot_rating <span class="op">=</span> pd.pivot_table(data <span class="op">=</span> games_rating[[<span class="st">'genre'</span>,<span class="st">'rating'</span>]],values <span class="op">=</span><span class="st">'rating'</span>, index <span class="op">=</span> <span class="st">'genre'</span>,columns <span class="op">=</span> <span class="st">'rating'</span>,aggfunc<span class="op">=</span> <span class="st">'size'</span>,fill_value<span class="op">=</span><span class="dv">0</span>)</span>
@@ -980,7 +984,7 @@ Name: count, dtype: int64
 </section>
 <section id="variable-rating-parte-2" class="level4">
 <h4 class="anchored" data-anchor-id="variable-rating-parte-2">2.3.5.2 Variable rating parte 2</h4>
-<div id="b2d09cb1" class="cell" data-execution_count="19">
+<div id="a690747b" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar si existe correlación entre la variable rating y genre</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un dataframe para pasar de string a enteros los valores de la variable rating</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>rating_num <span class="op">=</span> pd.DataFrame({<span class="st">'rating'</span>:games_rating[<span class="st">'rating'</span>].unique(),<span class="st">'rating_code'</span>:np.arange(<span class="dv">0</span>,games_rating[<span class="st">'rating'</span>].nunique())})</span>
@@ -996,7 +1000,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <p>La correlación entre genre y rating es mínima, no se podría usar como un referente que permita imputar los valores ausentes de rating</p>
-<div id="42c8eed8" class="cell" data-execution_count="20">
+<div id="dd5de59d" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar si existe influencia de alguna variable adicional, en este caso, se usar 'platform' creando una variable combinada</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>genre_platform <span class="op">=</span> games_rating[<span class="st">'platform'</span>] <span class="op">+</span> <span class="st">'-'</span> <span class="op">+</span> games_rating[<span class="st">'genre'</span>]</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>genre_platform.name <span class="op">=</span> <span class="st">'genre_platform'</span></span>
@@ -1023,7 +1027,7 @@ Name: count, dtype: int64
 </section>
 <section id="resultado-de-tratamiento-de-nan" class="level3">
 <h3 class="anchored" data-anchor-id="resultado-de-tratamiento-de-nan">2.3.7 Resultado de tratamiento de NaN</h3>
-<div id="08b7c3f4" class="cell" data-execution_count="21">
+<div id="be0d3325" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>valoresAusentes(games)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1058,7 +1062,7 @@ Es una variable no numérica que toma los siguientes valores:
 </section>
 <section id="revisión-de-datos-duplicados" class="level3">
 <h3 class="anchored" data-anchor-id="revisión-de-datos-duplicados">2.3.8 Revisión de datos duplicados</h3>
-<div id="c61e6002" class="cell" data-execution_count="22">
+<div id="5b60ac34" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar si hay registros (completos) duplicados</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Registros duplicados en el conjunto de datos de videojuegos: </span><span class="sc">{</span>games<span class="sc">.</span>duplicated()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
@@ -1079,7 +1083,7 @@ Lista de juegos repetidos por nombre:
 </div>
 <section id="consolidar-la-información-de-los-duplicados" class="level4">
 <h4 class="anchored" data-anchor-id="consolidar-la-información-de-los-duplicados">2.3.8.1 Consolidar la información de los duplicados</h4>
-<div id="0cc0e523" class="cell" data-execution_count="23">
+<div id="9d111079" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cruzar la lista anterior con el dataset original para obtener los datos del registro completo</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>duplicates <span class="op">=</span> games.merge(games_list[[<span class="st">'name'</span>, <span class="st">'platform'</span>]], on<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'platform'</span>], how<span class="op">=</span><span class="st">'inner'</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Unificar los registros por juego en uno solo (sumando las ventas)</span></span>
@@ -1116,7 +1120,7 @@ Lista de juegos repetidos por nombre:
 </section>
 <section id="eliminar-los-duplicados" class="level4">
 <h4 class="anchored" data-anchor-id="eliminar-los-duplicados">2.3.8.2 Eliminar los duplicados</h4>
-<div id="cedbb45d" class="cell" data-execution_count="24">
+<div id="d5e5909d" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un df de paso que tiene los datos de los juegos duplicados para cruzar con el dataset global de juegos</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>games_list_keys <span class="op">=</span> games_list[[<span class="st">'name'</span>,<span class="st">'platform'</span>,<span class="st">'year_of_release'</span>]]</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Indicator: una bandera ára indicar de qué df viene cada fila, esa mandera queda en una columna que se llama "_merge"</span></span>
@@ -1132,7 +1136,7 @@ Lista de juegos repetidos por nombre:
 </section>
 <section id="agrupar-juegos-desagregados-por-ventas-en-regiones-para-los-que-existe-un-registro-segun-ventas-por-region" class="level4">
 <h4 class="anchored" data-anchor-id="agrupar-juegos-desagregados-por-ventas-en-regiones-para-los-que-existe-un-registro-segun-ventas-por-region">2.3.8.3 Agrupar juegos desagregados por ventas en regiones (para los que existe un registro segun ventas por region)</h4>
-<div id="3b07f788" class="cell" data-execution_count="25">
+<div id="10e10e92" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copia del dataset</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>games_split <span class="op">=</span> games.copy() </span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Divivir la columna de nombre en la apertura de paréntesis creando una columna adicional con el complemento del nombre (lo que va después del paréntesis)</span></span>
@@ -1170,14 +1174,14 @@ Lista de juegos repetidos por nombre:
 </section>
 <section id="ventas-totales" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-totales">2.4 Ventas Totales</h2>
-<div id="26cc9ecc" class="cell" data-execution_count="26">
+<div id="3059290a" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>games[<span class="st">'total_sales'</span>] <span class="op">=</span> games[<span class="st">'na_sales'</span>] <span class="op">+</span> games[<span class="st">'eu_sales'</span>] <span class="op">+</span> games[<span class="st">'jp_sales'</span>] <span class="op">+</span> games[<span class="st">'other_sales'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
 <section id="analizar-los-datos" class="level1">
 <h1>3. Analizar los datos</h1>
-<div id="b1a1dfa9" class="cell" data-execution_count="27">
+<div id="96fc396b" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Listado de juegos</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>games_unique <span class="op">=</span> games[[<span class="st">'year_of_release'</span>,<span class="st">'name'</span>]].drop_duplicates()</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Listado de plataformas</span></span>
@@ -1185,7 +1189,7 @@ Lista de juegos repetidos por nombre:
 </div>
 <section id="lanzamiento-de-juegos-por-año" class="level2">
 <h2 class="anchored" data-anchor-id="lanzamiento-de-juegos-por-año">3.1 Lanzamiento de juegos por año</h2>
-<div id="64186621" class="cell" data-execution_count="28">
+<div id="d9994769" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>games_by_year <span class="op">=</span> games_unique.groupby(<span class="st">'year_of_release'</span>)[<span class="st">'name'</span>].size()</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras lanzamiento de juegos por año</span></span>
@@ -1216,14 +1220,14 @@ Lista de juegos repetidos por nombre:
 </section>
 <section id="ventas-por-plataforma" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-por-plataforma">3.2 Ventas por plataforma</h2>
-<div id="2519231f" class="cell" data-execution_count="29">
+<div id="7bfdfcee" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>total_sales_by_platform <span class="op">=</span> games[[<span class="st">'platform'</span>,<span class="st">'total_sales'</span>]].groupby(<span class="st">'platform'</span>,observed<span class="op">=</span><span class="va">True</span>)[<span class="st">'total_sales'</span>].<span class="bu">sum</span>().sort_values(ascending <span class="op">=</span> <span class="va">False</span>).to_frame()</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar columna con porcentaje acumulado</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>total_sales_by_platform[<span class="st">'pct_acumulado'</span>] <span class="op">=</span> <span class="bu">round</span>(total_sales_by_platform[<span class="st">'total_sales'</span>].cumsum(axis <span class="op">=</span> <span class="dv">0</span>)<span class="op">/</span>total_sales_by_platform[<span class="st">'total_sales'</span>].<span class="bu">sum</span>(),<span class="dv">5</span>)<span class="op">*</span><span class="dv">100</span></span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer los indices como culumna</span></span>
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>total_sales_by_platform <span class="op">=</span> total_sales_by_platform.reset_index()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="a69f5904" class="cell" data-execution_count="30">
+<div id="1d36caf8" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras global de ventas por plataforma 1980 - 2016</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># base de gráfico</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
@@ -1300,7 +1304,7 @@ Lista de juegos repetidos por nombre:
 </section>
 <section id="ventas-y-lanzamientos-por-plataforma-por-año" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-y-lanzamientos-por-plataforma-por-año">3.3 Ventas y lanzamientos por plataforma por año</h2>
-<div id="00e5e8aa" class="cell" data-execution_count="31">
+<div id="10c42f79" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear una lista con las 6 principales consolas o plataformas</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>b6_platform <span class="op">=</span> total_sales_by_platform.loc[:<span class="dv">5</span>,<span class="st">'platform'</span>].tolist()</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar el df original excluyendo las plataformas no seleccionadas</span></span>
@@ -1339,7 +1343,7 @@ year_of_release
 2016                NaN     NaN     NaN    3.60    0.18    1.52</code></pre>
 </div>
 </div>
-<div id="cd820da1" class="cell" data-execution_count="32">
+<div id="663a70fa" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafico de tendencia en el tiempo de las ventas por plataforma</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Base del gráfico</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
@@ -1399,7 +1403,7 @@ year_of_release
 <section id="ventas-por-plataforma-por-año-y-por-creador-o-fabricante-de-plataforma" class="level3">
 <h3 class="anchored" data-anchor-id="ventas-por-plataforma-por-año-y-por-creador-o-fabricante-de-plataforma">3.3.1 Ventas por plataforma por año y por creador (o fabricante) de plataforma</h3>
 <p>Para tener un detalle mayor del comportamiento de la popularidad de las plataformas se incluye al conjunto de datos el nombre de las empresas fabricantes de las plataformas.</p>
-<div id="d82f0a6d" class="cell" data-execution_count="33">
+<div id="655a729a" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diccionario con los datos de la corporación manufacturera de cada plataforma (generada con ayuda de IA Copilot)</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>corporation <span class="op">=</span> {<span class="st">'Wii'</span>: <span class="st">'Nintendo'</span>,<span class="st">'NES'</span>: <span class="st">'Nintendo'</span>,<span class="st">'GB'</span>: <span class="st">'Nintendo'</span>,</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'DS'</span>: <span class="st">'Nintendo'</span>,<span class="st">'3DS'</span>: <span class="st">'Nintendo'</span>,<span class="st">'SNES'</span>: <span class="st">'Nintendo'</span>,</span>
@@ -1411,7 +1415,7 @@ year_of_release
 <span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'PC'</span>: <span class="st">'Other'</span>,<span class="st">'2600'</span>: <span class="st">'Other'</span>,<span class="st">'TG16'</span>: <span class="st">'Other'</span>,<span class="st">'PCFX'</span>: <span class="st">'Other'</span>,</span>
 <span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'3DO'</span>: <span class="st">'Other'</span>,<span class="st">'WS'</span>: <span class="st">'Other'</span>,<span class="st">'NG'</span>: <span class="st">'Other'</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="8c9b6f1c" class="cell" data-execution_count="34">
+<div id="39df34df" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear una columna vacia en el dataset de juegos</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>games[<span class="st">'corporation'</span>] <span class="op">=</span> <span class="st">''</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignar el dato de la coporación creadora en la columna "corporation"</span></span>
@@ -1420,7 +1424,7 @@ year_of_release
 <span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un df auxiliar con datos agrupados por corporación, plataforma y año de lanzamiento del juego con el valor total de ventas</span></span>
 <span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>games_by_corporation <span class="op">=</span> games.groupby([<span class="st">'corporation'</span>,<span class="st">'platform'</span>,<span class="st">'year_of_release'</span>], observed<span class="op">=</span><span class="va">True</span>)[<span class="st">'total_sales'</span>].<span class="bu">sum</span>().reset_index()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5bed40ce" class="cell" data-execution_count="35">
+<div id="267afe06" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Función para análisis plataformas por desarrollador</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> byPlatformManufacturer(data,corporation):</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
@@ -1468,7 +1472,7 @@ year_of_release
 </div>
 <section id="plataformas-de-sony" class="level4">
 <h4 class="anchored" data-anchor-id="plataformas-de-sony">3.3.1.1 Plataformas de Sony</h4>
-<div id="d149fea2" class="cell" data-execution_count="36">
+<div id="ef5c6253" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>games_by_sony <span class="op">=</span> byPlatformManufacturer(games_by_corporation, <span class="st">"Sony"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1482,7 +1486,7 @@ year_of_release
 </section>
 <section id="plataformas-de-nintendo" class="level4">
 <h4 class="anchored" data-anchor-id="plataformas-de-nintendo">3.3.1.2 Plataformas de Nintendo</h4>
-<div id="8db42a0b" class="cell" data-execution_count="37">
+<div id="263225cd" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>games_by_nintendo <span class="op">=</span> byPlatformManufacturer(games_by_corporation, <span class="st">"Nintendo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1497,7 +1501,7 @@ year_of_release
 </section>
 <section id="plataformas-de-microsoft" class="level4">
 <h4 class="anchored" data-anchor-id="plataformas-de-microsoft">3.3.1.3 Plataformas de Microsoft</h4>
-<div id="a21555a3" class="cell" data-execution_count="38">
+<div id="d5941f25" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>games_by_microsoft <span class="op">=</span> byPlatformManufacturer(games_by_corporation, <span class="st">'Microsoft'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1511,7 +1515,7 @@ year_of_release
 </section>
 <section id="ventas-de-video-juegos-por-corporación" class="level4">
 <h4 class="anchored" data-anchor-id="ventas-de-video-juegos-por-corporación">3.3.1.4 Ventas de video juegos por corporación</h4>
-<div id="3b7b706c" class="cell" data-execution_count="39">
+<div id="c5cdf217" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear tabla de doble entrada con años y fabricante</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>games_by_corp_all <span class="op">=</span> pd.pivot_table(data <span class="op">=</span> games, values<span class="op">=</span><span class="st">'total_sales'</span>,index <span class="op">=</span> <span class="st">'year_of_release'</span>,columns <span class="op">=</span> <span class="st">'corporation'</span>, aggfunc <span class="op">=</span> <span class="st">'sum'</span>).iloc[:<span class="op">-</span><span class="dv">1</span>,:]</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1560,7 +1564,7 @@ year_of_release
 </section>
 <section id="reduccion-del-dataset-datos-relevantes" class="level2">
 <h2 class="anchored" data-anchor-id="reduccion-del-dataset-datos-relevantes">3.4 Reduccion del dataset: datos relevantes</h2>
-<div id="f53df9aa" class="cell" data-execution_count="40">
+<div id="fb3be6bb" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los datos por años y corporaciones de interés</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>games_red <span class="op">=</span> games[(games[<span class="st">'year_of_release'</span>]<span class="op">&gt;=</span><span class="dv">2000</span>) <span class="op">&amp;</span> (games[<span class="st">'year_of_release'</span>]<span class="op">&lt;</span><span class="dv">2016</span>) <span class="op">&amp;</span> ((games[<span class="st">'corporation'</span>] <span class="op">==</span> <span class="st">'Sony'</span>) <span class="op">|</span> (games[<span class="st">'corporation'</span>] <span class="op">==</span> <span class="st">'Microsoft'</span>) <span class="op">|</span> (games[<span class="st">'corporation'</span>] <span class="op">==</span> <span class="st">'Nintendo'</span>))]</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plataformas disponibles en los datos</span></span>
@@ -1573,7 +1577,7 @@ year_of_release
 </div>
 <section id="comportamiento-por-fabricante" class="level3">
 <h3 class="anchored" data-anchor-id="comportamiento-por-fabricante">3.4.1 Comportamiento por fabricante</h3>
-<div id="da84a0df" class="cell" data-execution_count="41">
+<div id="4cd83e7f" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de doble entrada para tendencia por fabricante</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>games_red_corp <span class="op">=</span> pd.pivot_table(data <span class="op">=</span> games_red,values <span class="op">=</span> <span class="st">'total_sales'</span>,index <span class="op">=</span> <span class="st">'year_of_release'</span>,columns <span class="op">=</span> <span class="st">'corporation'</span>,aggfunc <span class="op">=</span> <span class="st">'sum'</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la tendencia de ventas de videojuegos por fabricante de plataformas</span></span>
@@ -1606,14 +1610,14 @@ year_of_release
 </div>
 </div>
 </div>
-<div id="07699834" class="cell" data-execution_count="42">
+<div id="d055d907" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset organizado por fabricante</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>games_red_by_corporation <span class="op">=</span> games_red.groupby([<span class="st">'corporation'</span>,<span class="st">'platform'</span>,<span class="st">'year_of_release'</span>], observed<span class="op">=</span><span class="va">True</span>)[<span class="st">'total_sales'</span>].<span class="bu">sum</span>().reset_index()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="plataformas-potencialmente-rentables" class="level3">
 <h3 class="anchored" data-anchor-id="plataformas-potencialmente-rentables">3.4.2 Plataformas potencialmente rentables</h3>
-<div id="fa0f35b5" class="cell" data-execution_count="43">
+<div id="d4c2abab" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> alivePlatforms (data,corporation):</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generar resumne de las plataformas activas por fabricante al finalizar 2015 a fin de identificar la plataforma líder de ventas en el último año.</span></span>
@@ -1640,7 +1644,7 @@ year_of_release
 <span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plataformas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="ab1b029d" class="cell" data-execution_count="44">
+<div id="b7e112d0" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reducir el conjunto de datos a las plataformas que están vigentes en el mercado</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>active_platforms <span class="op">=</span> <span class="bu">dict</span>()</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> corp <span class="kw">in</span> manufacturers:</span>
@@ -1669,7 +1673,7 @@ year_of_release
 </div>
 <section id="visualización-plataformas-potencialmente-rentables" class="level4">
 <h4 class="anchored" data-anchor-id="visualización-plataformas-potencialmente-rentables">3.4.2.1 Visualización plataformas potencialmente rentables</h4>
-<div id="e085bc43" class="cell" data-execution_count="45">
+<div id="088bf809" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'red'</span>,<span class="st">'blue'</span>,<span class="st">'orange'</span>,<span class="st">'green'</span>,<span class="st">'purple'</span>, <span class="st">'brown'</span>]</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> active_platforms.keys():</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
@@ -1726,7 +1730,7 @@ year_of_release
 </section>
 <section id="dispersión-de-las-ventas-por-plataforma" class="level2">
 <h2 class="anchored" data-anchor-id="dispersión-de-las-ventas-por-plataforma">3.5 Dispersión de las ventas por plataforma</h2>
-<div id="e71aa8f3" class="cell" data-execution_count="46">
+<div id="f9863a17" class="cell" data-execution_count="46">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de las plataformas seleccionadas como de mayor influencia</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>selected_platforms <span class="op">=</span> [<span class="st">'PS4'</span>,<span class="st">'XOne'</span>,<span class="st">'PS3'</span>,<span class="st">'PSV'</span>,<span class="st">'3DS'</span>,<span class="st">'WiiU'</span>]</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Listas de Series por plataforma para graficar</span></span>
@@ -1736,7 +1740,7 @@ year_of_release
 <span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista de promedios por plataforma</span></span>
 <span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>medias <span class="op">=</span> [data.mean() <span class="cf">for</span> data <span class="kw">in</span> data_to_plot]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="42b79069" class="cell" data-execution_count="47">
+<div id="889cd956" class="cell" data-execution_count="47">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear lienzo de gráfico</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))<span class="co">#, sharex=True)</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1771,7 +1775,7 @@ year_of_release
 </div>
 <section id="deatlles-de-dispersión-de-las-ventas-por-plataforma" class="level3">
 <h3 class="anchored" data-anchor-id="deatlles-de-dispersión-de-las-ventas-por-plataforma">3.5.1 Deatlles de dispersión de las ventas por plataforma</h3>
-<div id="dd7a0cb5" class="cell" data-execution_count="48">
+<div id="42e7270d" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Genereación de describe por plataforma</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> platform <span class="kw">in</span> selected_platforms:</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\t</span><span class="st">"</span><span class="op">*</span><span class="dv">2</span>,platform)</span>
@@ -1889,7 +1893,7 @@ Name: total_sales, dtype: float64
 </section>
 <section id="relación-entre-reseñas-y-total-de-ventas" class="level2">
 <h2 class="anchored" data-anchor-id="relación-entre-reseñas-y-total-de-ventas">3.6 Relación entre reseñas y total de ventas</h2>
-<div id="e8cd1bda" class="cell" data-execution_count="49">
+<div id="826ef69a" class="cell" data-execution_count="49">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccion de la plataforma</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> platform <span class="kw">in</span> selected_platforms:</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    df_temp <span class="op">=</span> games_red[games_red[<span class="st">'platform'</span>] <span class="op">==</span> platform]</span>
@@ -1934,7 +1938,7 @@ Cantidad de valores no nulos para 'user_score': 91
 <p>Para la evaluación de la correlación entre las reseñas y las ventas se selecciona la plataforma PS3 dado que:<br> 1) Tiene la mayor cantidad de registros disponibles 2) Debido a que hay NaN en las dos variables de reseñas, las proporciones de valores no nulos garantizan una importante disponibilidad de datos.</p>
 <section id="relación-entre-las-reseñas-de-usuarios-y-el-total-de-ventas-parte-1" class="level3">
 <h3 class="anchored" data-anchor-id="relación-entre-las-reseñas-de-usuarios-y-el-total-de-ventas-parte-1">3.6.1 Relación entre las reseñas de usuarios y el total de ventas parte 1</h3>
-<div id="68c723d5" class="cell" data-execution_count="50">
+<div id="57dfc72e" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reducir el conjunto de datos a los registros y variables de interés</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>games_red_users_PS3 <span class="op">=</span> games_red[[<span class="st">'name'</span>,<span class="st">'user_score'</span>,<span class="st">'genre'</span>,<span class="st">'total_sales'</span>]][games_red[<span class="st">'platform'</span>]<span class="op">==</span><span class="st">'PS3'</span>]</span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Excluir los NaN</span></span>
@@ -1942,7 +1946,7 @@ Cantidad de valores no nulos para 'user_score': 91
 <span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar como índice el nombre del video juego</span></span>
 <span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>games_red_users_PS3 <span class="op">=</span> games_red_users_PS3.set_index(<span class="st">'name'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="08413ff1" class="cell" data-execution_count="51">
+<div id="369ff1bf" class="cell" data-execution_count="51">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> graficoDispersion (data,x,titulo, color <span class="op">=</span> <span class="st">'steelblue'</span>):</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generar gráfico</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
@@ -1961,7 +1965,7 @@ Cantidad de valores no nulos para 'user_score': 91
 <span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="3de214b3" class="cell" data-execution_count="52">
+<div id="3f74f49e" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar los datos filtrados</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>graficoDispersion(games_red_users_PS3,<span class="st">'user_score'</span>,<span class="st">'Ventas de videojuegos en función </span><span class="ch">\n</span><span class="st">de la calificación de los usuarios para PS3'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -1979,7 +1983,7 @@ Cantidad de valores no nulos para 'user_score': 91
 </section>
 <section id="relación-entre-las-reseñas-de-usuarios-y-el-total-de-ventas-parte-2" class="level3">
 <h3 class="anchored" data-anchor-id="relación-entre-las-reseñas-de-usuarios-y-el-total-de-ventas-parte-2">3.6.2 Relación entre las reseñas de usuarios y el total de ventas parte 2</h3>
-<div id="a7c5aa19" class="cell" data-execution_count="53">
+<div id="89537852" class="cell" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar datos</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>games_red_users_PS3_2 <span class="op">=</span> games_red_users_PS3[games_red_users_PS3[<span class="st">'total_sales'</span>]<span class="op">&lt;=</span><span class="fl">2.5</span>]</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar gráfico hasta 2.5 ventas</span></span>
@@ -2012,7 +2016,7 @@ Cantidad de valores no nulos para 'user_score': 91
 </section>
 <section id="calculo-de-correlaciones-reseñas-de-usuarios-frente-a-total-de-ventas" class="level3">
 <h3 class="anchored" data-anchor-id="calculo-de-correlaciones-reseñas-de-usuarios-frente-a-total-de-ventas">3.6.3 Calculo de correlaciones reseñas de usuarios frente a total de ventas</h3>
-<div id="859370a7" class="cell" data-execution_count="54">
+<div id="b3ac79ab" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlación con el conjunto completo para PS3</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>corr_PS3_1 <span class="op">=</span> games_red_users_PS3[<span class="st">'user_score'</span>].corr(games_red_users_PS3[<span class="st">'total_sales'</span>])</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La correlación entre las reseñas de usuarios y el total de ventas para la plataforma PS3 es de: </span><span class="sc">{</span><span class="bu">round</span>(corr_PS3_1,<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -2036,7 +2040,7 @@ La correlación entre las reseñas de usuarios y el total de ventas (menores o i
 </section>
 <section id="relación-entre-las-reseñas-de-profesionales-y-el-total-de-ventas-parte-1" class="level3">
 <h3 class="anchored" data-anchor-id="relación-entre-las-reseñas-de-profesionales-y-el-total-de-ventas-parte-1">3.6.4 Relación entre las reseñas de profesionales y el total de ventas parte 1</h3>
-<div id="d5b89177" class="cell" data-execution_count="55">
+<div id="60987527" class="cell" data-execution_count="55">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reducir el conjunto de datos a los registros y variables de interés incluyendo critic_score</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>games_red_pro_PS3 <span class="op">=</span> games_red[[<span class="st">'name'</span>,<span class="st">'critic_score'</span>,<span class="st">'genre'</span>,<span class="st">'total_sales'</span>]][games_red[<span class="st">'platform'</span>]<span class="op">==</span><span class="st">'PS3'</span>]</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Excluir los NaN</span></span>
@@ -2057,7 +2061,7 @@ La correlación entre las reseñas de usuarios y el total de ventas (menores o i
 </div>
 </div>
 <p>El comportamiento de las calificaciones y el total de ventas tiende a ser un poco más “ordenado”. Los valores “atípicos”, esto es, los videojuegos de valores de ventas altas se ubican en una escala de mayor calificación. En este caso pareciera observarse una relación más coherente, no obstante, los valores atípicos no permiten observar con mayor detalle el comportamiento de la generalidad de los datos pues estos quedan agrupados por debabo de 2.5 millones de USD</p>
-<div id="c5d7cf44" class="cell" data-execution_count="56">
+<div id="dadcc2db" class="cell" data-execution_count="56">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar datos</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>games_red_pro_PS3_2 <span class="op">=</span> games_red_pro_PS3[games_red_pro_PS3[<span class="st">'total_sales'</span>]<span class="op">&lt;=</span><span class="fl">2.5</span>]</span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar gráfico hasta 2.5 ventas</span></span>
@@ -2090,7 +2094,7 @@ La correlación entre las reseñas de usuarios y el total de ventas (menores o i
 </section>
 <section id="calculo-de-correlaciones-reseñas-de-profesionales-frente-a-total-de-ventas" class="level3">
 <h3 class="anchored" data-anchor-id="calculo-de-correlaciones-reseñas-de-profesionales-frente-a-total-de-ventas">3.6.6 Calculo de correlaciones reseñas de profesionales frente a total de ventas</h3>
-<div id="1fb9dc59" class="cell" data-execution_count="57">
+<div id="8a8f30d2" class="cell" data-execution_count="57">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlación con el conjunto completo para PS3 para critic_score</span></span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>corr_PS3_4 <span class="op">=</span> games_red_pro_PS3[<span class="st">'critic_score'</span>].corr(games_red_pro_PS3[<span class="st">'total_sales'</span>])</span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La correlación entre las reseñas de profesionales y el total de ventas para la plataforma PS3 es de: </span><span class="sc">{</span><span class="bu">round</span>(corr_PS3_4,<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -2115,7 +2119,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="comparación-de-juegos-en-otras-plataformas" class="level2">
 <h2 class="anchored" data-anchor-id="comparación-de-juegos-en-otras-plataformas">3.7 Comparación de juegos en otras plataformas</h2>
-<div id="d626490d" class="cell" data-execution_count="58">
+<div id="fcbfa02f" class="cell" data-execution_count="58">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>games_red_plaforms <span class="op">=</span> <span class="bu">dict</span>()</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> platform <span class="kw">in</span> selected_platforms:</span>
@@ -2163,7 +2167,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="distribución-de-los-juegos-por-género" class="level2">
 <h2 class="anchored" data-anchor-id="distribución-de-los-juegos-por-género">3.8 Distribución de los juegos por género</h2>
-<div id="126cc6d9" class="cell" data-execution_count="59">
+<div id="eb39256e" class="cell" data-execution_count="59">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupación por género de juego y conteo del total de juegos por género</span></span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>games_by_genre_total <span class="op">=</span> games_red.groupby(<span class="st">'genre'</span>).size().sort_values(ascending <span class="op">=</span> <span class="va">False</span>).to_frame(name <span class="op">=</span> <span class="st">'total_games'</span>).reset_index()</span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupación por género de juego y total de ventas por juego por género</span></span>
@@ -2174,7 +2178,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 <span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>games_by_genre[<span class="st">'avg_by_game'</span>] <span class="op">=</span> <span class="bu">round</span>(games_by_genre[<span class="st">'total_sales'</span>]<span class="op">/</span>games_by_genre[<span class="st">'total_games'</span>],<span class="dv">2</span>)</span>
 <span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>games_by_genre <span class="op">=</span> games_by_genre.sort_values(by <span class="op">=</span> <span class="st">'total_sales'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="6c960293" class="cell" data-execution_count="60">
+<div id="0af15f84" class="cell" data-execution_count="60">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafico comparativo de ventas por género y cantidad de juegos</span></span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras pata total_sales</span></span>
@@ -2225,7 +2229,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 <p>El genero con mayores ventas es Action, seguido de Sports y Shooter, esto quiere decir, en términos de millones de dólares son los de mayores ingresos. Para el caso del primero cada juego genera en promedio 0.54 millones de dólaes en ingresos, Sports genera 0.59 millones de dólares por juego. En el caso de shooter es el género con el promedio por juego más alto en ingreso: cada juego genera en promedio un ingreso de 0.89 millones de dólares. Platform es otro de los géneros con mayor ingreso promedio por juego alcanzando 0.71 millones de dólares. En el caso de los juegos de género Adventure, Puzzle y Strategy son los de menores ventas y a su vez son los de menor promedio de ingreso por juego. Adventure es el género con ingreso promedio por juego más bajo alcanzando 0.16 millones de dólares por juego. Se resalta que estos valores son globales, no se detallan por plataforma.<br> En conclusión, cada genero tiene un comportamiento diferente por juego, en promedio la venta de un juego del género shooter o Sports generan más ingresos que un juego de Adventure o Strategy, adicionalmente que los dos primeros mencionados tienen mayores ventas.</p>
 <section id="distribución-de-los-juegos-por-género-y-por-plataforma" class="level3">
 <h3 class="anchored" data-anchor-id="distribución-de-los-juegos-por-género-y-por-plataforma">3.8.1 Distribución de los juegos por género y por plataforma</h3>
-<div id="ae886669" class="cell" data-execution_count="61">
+<div id="744055b3" class="cell" data-execution_count="61">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>games_selected_platforms <span class="op">=</span> games_red[games_red[<span class="st">'platform'</span>].isin(selected_platforms)]</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>pivot_genre_sales <span class="op">=</span> pd.pivot_table(games_selected_platforms[[<span class="st">'name'</span>,<span class="st">'genre'</span>,<span class="st">'platform'</span>,<span class="st">'total_sales'</span>]],values <span class="op">=</span> [<span class="st">'total_sales'</span>], index <span class="op">=</span> <span class="st">'genre'</span>, columns <span class="op">=</span> <span class="st">'platform'</span>,aggfunc <span class="op">=</span> [<span class="st">'sum'</span>])</span>
@@ -2264,7 +2268,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 <section id="perfil-de-usuario" class="level1">
 <h1>4. Perfil de usuario</h1>
 <p>Para cada región (NA, UE, JP y Otras)</p>
-<div id="2f98a823" class="cell" data-execution_count="62">
+<div id="5742a256" class="cell" data-execution_count="62">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para generar graficas y datos de las cinco plataformas más importrantes por región</span></span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> detalleRegionPlataforma (data,region_sales,region_name, ax):</span>
 <span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -2300,7 +2304,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </div>
 <section id="ventas-por-plataforma-por-región" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-por-plataforma-por-región">4.1 Ventas por plataforma por región</h2>
-<div id="7fe5b7d8" class="cell" data-execution_count="63">
+<div id="2a968224" class="cell" data-execution_count="63">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear lista de tuplas 'nombre de la columna' - 'nombre de la región'</span></span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>regions <span class="op">=</span> [(<span class="st">'na_sales'</span>,<span class="st">'América del Norte'</span>),</span>
@@ -2348,7 +2352,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="ventas-por-plataforma-por-región-visión-global" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-por-plataforma-por-región-visión-global">4.2 Ventas por plataforma por región (visión global)</h2>
-<div id="ed0796c1" class="cell" data-execution_count="64">
+<div id="22ab5615" class="cell" data-execution_count="64">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A nivel global las 5 plataformas con las ventas más altas desde el año 2000</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>games_platform_global <span class="op">=</span> games_red.groupby(<span class="st">'platform'</span>)[<span class="st">'total_sales'</span>].<span class="bu">sum</span>().sort_values(ascending <span class="op">=</span> <span class="va">False</span>).head().sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar al dataframe las ventas por region</span></span>
@@ -2369,7 +2373,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </div>
 <section id="ventas-por-plataforma-por-región-gráfico" class="level3">
 <h3 class="anchored" data-anchor-id="ventas-por-plataforma-por-región-gráfico">4.2.1 Ventas por plataforma por región gráfico</h3>
-<div id="84b98195" class="cell" data-execution_count="65">
+<div id="b16f4c25" class="cell" data-execution_count="65">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras apiladas</span></span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>games_platform_pct.plot(kind <span class="op">=</span> <span class="st">'bar'</span>,</span>
 <span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>                        stacked <span class="op">=</span> <span class="va">True</span>,</span>
@@ -2416,7 +2420,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="ventas-por-región-por-plataforma-visión-global" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-por-región-por-plataforma-visión-global">4.3 Ventas por región por plataforma (Visión global)</h2>
-<div id="433a5811" class="cell" data-execution_count="66">
+<div id="79806fbc" class="cell" data-execution_count="66">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear una copia transpuesta del anterior df</span></span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>games_region_global <span class="op">=</span> games_platform_global.T</span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cambiar los nombres de las columnas</span></span>
@@ -2437,7 +2441,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </div>
 <section id="ventas-por-región-por-plataforma-gráfico" class="level3">
 <h3 class="anchored" data-anchor-id="ventas-por-región-por-plataforma-gráfico">4.3.1 Ventas por región por plataforma gráfico</h3>
-<div id="4322b540" class="cell" data-execution_count="67">
+<div id="9f6b7bf9" class="cell" data-execution_count="67">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>games_region_pct <span class="op">=</span> games_region_pct.reset_index()</span>
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>games_region_pct.columns <span class="op">=</span> [<span class="st">'Region'</span>] <span class="op">+</span> platforms</span>
 <span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>games_region_pct.plot(kind <span class="op">=</span> <span class="st">'bar'</span>,</span>
@@ -2478,7 +2482,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="ventas-por-género-por-región" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-por-género-por-región">4.4 Ventas por género por región</h2>
-<div id="7d44968e" class="cell" data-execution_count="68">
+<div id="9c68a60c" class="cell" data-execution_count="68">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A nivel global los 5 géneros con las ventas más altas desde el año 2000</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>games_genre_global <span class="op">=</span> games_red.groupby(<span class="st">'genre'</span>)[<span class="st">'total_sales'</span>].<span class="bu">sum</span>().sort_values(ascending <span class="op">=</span> <span class="va">False</span>).head().sort_values(ascending <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregar al dataframe las ventas por region</span></span>
@@ -2499,7 +2503,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </div>
 <section id="ventas-por-género-por-región-gráfico" class="level3">
 <h3 class="anchored" data-anchor-id="ventas-por-género-por-región-gráfico">4.4.1 Ventas por género por región gráfico</h3>
-<div id="fed29551" class="cell" data-execution_count="69">
+<div id="7eade37a" class="cell" data-execution_count="69">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de barras apiladas</span></span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>games_genre_pct.plot(kind <span class="op">=</span> <span class="st">'barh'</span>,</span>
 <span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>                        stacked <span class="op">=</span> <span class="va">True</span>,</span>
@@ -2540,7 +2544,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="ventas-por-region-por-género" class="level2">
 <h2 class="anchored" data-anchor-id="ventas-por-region-por-género">4.5 Ventas por region por género</h2>
-<div id="9d1fdf02" class="cell" data-execution_count="70">
+<div id="2c3f01f9" class="cell" data-execution_count="70">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear una copia transpuesta del anterior df</span></span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>games_genre_region <span class="op">=</span> games_genre_global.T</span>
 <span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Renombrar las columnas</span></span>
@@ -2562,7 +2566,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </div>
 <section id="ventas-por-region-por-género-gráfico" class="level3">
 <h3 class="anchored" data-anchor-id="ventas-por-region-por-género-gráfico">4.5.1 Ventas por region por género gráfico</h3>
-<div id="520a98e0" class="cell" data-execution_count="71">
+<div id="daa8aaeb" class="cell" data-execution_count="71">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>games_genre_region_pct <span class="op">=</span> games_genre_region_pct.reset_index()</span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>games_genre_region_pct.columns <span class="op">=</span> [<span class="st">'Region'</span>] <span class="op">+</span> genres</span>
 <span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear gráfico</span></span>
@@ -2605,7 +2609,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="clasificaciones-de-esrb-vs-ventas-por-region" class="level2">
 <h2 class="anchored" data-anchor-id="clasificaciones-de-esrb-vs-ventas-por-region">4.6 Clasificaciones de ESRB vs ventas por region</h2>
-<div id="9caca5f0" class="cell" data-execution_count="72">
+<div id="72060409" class="cell" data-execution_count="72">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total de juegos</span></span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>games_region_esrb <span class="op">=</span> games_red.groupby(<span class="st">'rating'</span>).size()</span>
 <span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>games_region_esrb.name <span class="op">=</span> <span class="st">'total_games'</span></span>
@@ -2635,7 +2639,7 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </div>
 <section id="clasificaciones-de-esrb-vs-ventas-por-region-gráfico" class="level3">
 <h3 class="anchored" data-anchor-id="clasificaciones-de-esrb-vs-ventas-por-region-gráfico">4.6.1 Clasificaciones de ESRB vs ventas por region gráfico</h3>
-<div id="f876a9dd" class="cell" data-execution_count="73">
+<div id="3c72c713" class="cell" data-execution_count="73">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar gráfico de barras</span></span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>games_region_esrb_pct.plot(kind <span class="op">=</span> <span class="st">'bar'</span>,</span>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>                           width <span class="op">=</span> <span class="fl">0.7</span>)</span>
@@ -2666,18 +2670,18 @@ La correlación entre las reseñas de profesionales y el total de ventas (menore
 </section>
 <section id="pruebas-de-hipótesis" class="level1">
 <h1>5. Pruebas de hipótesis</h1>
-<div id="92bbd301" class="cell" data-execution_count="74">
+<div id="bb6c682e" class="cell" data-execution_count="74">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.05</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="calificaciones-xbox-one-y-pc---parámetros-estadísticos" class="level2">
 <h2 class="anchored" data-anchor-id="calificaciones-xbox-one-y-pc---parámetros-estadísticos">5.1 Calificaciones Xbox One y PC - Parámetros estadísticos</h2>
-<div id="2a4746e5" class="cell" data-execution_count="75">
+<div id="e4139ac4" class="cell" data-execution_count="75">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los datasets a usar en las pruebas de hipótesis</span></span>
 <span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Xbox One y PC</span></span>
 <span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>games_XOne <span class="op">=</span> games[games[<span class="st">'platform'</span>]<span class="op">==</span><span class="st">'XOne'</span>][<span class="st">'user_score'</span>].dropna()</span>
 <span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>games_PC <span class="op">=</span> games[games[<span class="st">'platform'</span>]<span class="op">==</span><span class="st">'PC'</span>][<span class="st">'user_score'</span>].dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="68baec3a" class="cell" data-execution_count="76">
+<div id="e6f0b60d" class="cell" data-execution_count="76">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Parámetros estadísticos de las calificaciones de usuarios para los juegos de la plataforma Xbox One: '</span>)</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Se tienen </span><span class="sc">{</span><span class="bu">len</span>(games_XOne)<span class="sc">}</span><span class="ss"> registros de juegos calificados por los usuarios para la plataforma Xbox One"</span>) <span class="co"># </span></span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"El promedio de calificación por usuarios en juegos de Xbox One es de </span><span class="sc">{</span><span class="bu">round</span>(games_XOne.mean(),<span class="dv">2</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -2702,7 +2706,7 @@ La desviación estándar de las calificaciones por usuarios para los juegos para
 </div>
 <section id="calificaciones-xbox-one-y-pc---evaluación-de-varianzas" class="level3">
 <h3 class="anchored" data-anchor-id="calificaciones-xbox-one-y-pc---evaluación-de-varianzas">5.1.1 Calificaciones Xbox One y PC - Evaluación de varianzas</h3>
-<div id="f954626f" class="cell" data-execution_count="77">
+<div id="bf64c9b7" class="cell" data-execution_count="77">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Levene para verificar si las varianzas son iguales</span></span>
 <span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>statistical,p_value <span class="op">=</span> st.levene(games_XOne,games_PC)</span>
 <span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2723,7 +2727,7 @@ No podemos rechazar la hipótesis nula, es decir, existe evidencia estadística 
 </section>
 <section id="calificaciones-xbox-one-y-pc---evaluación-de-promedios" class="level3">
 <h3 class="anchored" data-anchor-id="calificaciones-xbox-one-y-pc---evaluación-de-promedios">5.1.2 Calificaciones Xbox One y PC - Evaluación de promedios</h3>
-<div id="f4cc5529" class="cell" data-execution_count="78">
+<div id="c673c484" class="cell" data-execution_count="78">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prueba de hipótesis de igualdad de medias (promedios) de evaluación de juegos por parte de los usuarios</span></span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La prueba de Levene permite concluir que las varianzas son iguales por lo que el parámetro 'equal_var' se establece en True</span></span>
 <span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> st.ttest_ind(games_XOne,games_PC, equal_var <span class="op">=</span> <span class="va">True</span>)</span>
@@ -2746,7 +2750,7 @@ Rechazamos la hipótesis nula, es decir, existe evidencia estadística para conc
 </section>
 <section id="calificaciones-action-y-sports---parámetros-estadísticos" class="level2">
 <h2 class="anchored" data-anchor-id="calificaciones-action-y-sports---parámetros-estadísticos">5.2 Calificaciones Action y Sports - Parámetros estadísticos</h2>
-<div id="e3df9cc5" class="cell" data-execution_count="79">
+<div id="f448caf8" class="cell" data-execution_count="79">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los datasets a usar en las pruebas de hipótesis</span></span>
 <span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Action y Sports</span></span>
 <span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>games_Action <span class="op">=</span> games[games[<span class="st">'genre'</span>]<span class="op">==</span><span class="st">'Action'</span>][<span class="st">'user_score'</span>].dropna()</span>
@@ -2776,7 +2780,7 @@ La desviación estándar de las calificaciones por usuarios juegos clasificados 
 </div>
 <section id="calificaciones-action-y-sports---evaluación-de-varianzas" class="level3">
 <h3 class="anchored" data-anchor-id="calificaciones-action-y-sports---evaluación-de-varianzas">5.2.1 Calificaciones Action y Sports - Evaluación de varianzas</h3>
-<div id="ed6b0d9f" class="cell" data-execution_count="80">
+<div id="612014d3" class="cell" data-execution_count="80">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Levene para verificar si las varianzas son iguales</span></span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>statistical,p_value <span class="op">=</span> st.levene(games_Action,games_Sports)</span>
 <span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2798,7 +2802,7 @@ de los juegos, por parte de los usuarios, de los géneros Action y Sports no son
 </section>
 <section id="calificaciones-action-y-sports---evaluación-de-promedios" class="level3">
 <h3 class="anchored" data-anchor-id="calificaciones-action-y-sports---evaluación-de-promedios">5.2.2 Calificaciones Action y Sports - Evaluación de promedios</h3>
-<div id="8129f80e" class="cell" data-execution_count="81">
+<div id="1934f4dc" class="cell" data-execution_count="81">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prueba de hipótesis de igualdad de medias (promedios) de evaluación de juegos por parte de los usuarios</span></span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="co"># La prueba de Levene permite concluir que las varianzas no son iguales por lo que el parámetro 'equal_var' se establece en False</span></span>
 <span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> st.ttest_ind(games_Action,games_Sports, equal_var <span class="op">=</span> <span class="va">False</span>)</span>
