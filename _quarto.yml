@@ -40,6 +40,18 @@ format:
             }
           </style>
 
+
+          <!-- Google tag (gtag.js) -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZ4HL1XQKX"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-BZ4HL1XQKX');
+          </script>
+
+
 execute: 
   fig-width: 8 
   fig-height: 5 

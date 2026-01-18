@@ -169,8 +169,6 @@ Para el seguimiento del plan estratégico se definieron cuatro medidas, orientad
 | EjecucionPonderadaGlobal | Calcula el porcentaje de ejecución de los productos considerando el peso asignado en el plan estratégico (el peso de cada producto dentro del cuatrienio). El valor incluye los rezagos agregados posteriormente. |
 | EjecucionReal | Calcula el porcentaje de ejecución de los productos considerando el peso asignado en la vigencia (el peso de cada producto para un año específico). El valor incluye los rezagos agregados posteriormente. |
 
-
-
 El desarrollo de la fórmula de una de las medidas aplicadas al avance físico se muestra a continuación.
 
 ------------------------------------------------------------------------
@@ -253,7 +251,6 @@ SWITCH(
 ```
 
 ------------------------------------------------------------------------
-
 
 ### 3.1.2 Avance Financiero
 
