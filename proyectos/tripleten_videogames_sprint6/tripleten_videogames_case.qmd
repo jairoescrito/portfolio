@@ -6,8 +6,6 @@ format:
 jupyter: python3
 ---
 
-
-
 # 1. Acceder a los datos
 
 ```{python}
@@ -23,7 +21,7 @@ from scipy import stats as st
 
 ```{python}
 
-games_raw = pd.read_csv('/home/jairoescrito/OneDrive/Documentos/CV/portfolio_github/proyectos/tripleten_videogames_sprint6/games.csv')
+games_raw = pd.read_csv('proyectos/tripleten_videogames_sprint6/games.csv')
 # visualización inicial de los datos
 print(games_raw.sample(10))
 ```

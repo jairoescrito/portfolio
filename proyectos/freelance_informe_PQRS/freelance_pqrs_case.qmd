@@ -1,0 +1,191 @@
+---
+title: "Informe de evaluación del proceso de trámite de Peticiones, Quejas y Reclamos"
+format:
+  html:
+    page-layout: full
+jupyter: python3
+---
+
+# 1. Cargar datos generados por el sistema de gestión documental (SGD)
+
+**Cargar librerías**
+
+```{python}
+import os
+import pandas as pd
+```
+
+## 1.1 Leer los archivos planos
+
+```{python}
+# Crear un listado de todos los archivos que están en la carpeta datos
+# En la carpeta datos están almacenados todos los archivos con la información indumo para el informe
+archivos_pqrs = os.listdir("proyectos/freelance_informe_PQRS/datos")
+
+# Generar un diccionario vacío para guardar los archivos pqrs que se generaron en el SGD
+datos_pqrs = dict()
+
+# Leer todos los archivos de la carpeta datos que son de tipo hoja de cálculo de Excel
+# El SGD genera los archivos en formato Excel
+for archivo in archivos_pqrs:
+    if archivo.endswith((".xls", ".xlsx")):
+        datos_pqrs[archivo] = pd.read_excel(f"proyectos/freelance_informe_PQRS/datos/{archivo}",
+                                      keep_default_na=False,
+                                      na_filter=False)
+```
+
+## 1.2 Crear los conjuntos de datos
+
+```{python}
+# Crear dos dataframes: uno de radicados y el otro de respuestas
+respuestas = pd.DataFrame()
+radicados = pd.DataFrame()
+
+# Concatenar los dataframes 
+for key in datos_pqrs.keys():
+    if "Respuestas" in key:
+        respuestas = pd.concat([respuestas,datos_pqrs[key]], axis = 0, ignore_index=True)
+    else:
+        radicados = pd.concat([radicados,datos_pqrs[key]], axis = 0, ignore_index=True)
+```
+
+**Previsualización de los conjuntos de datos**
+
+```{python}
+# Vista de los dataframes
+print('Vista previa del conjunto de datos de respuestas a comunicaciones: ')
+print(respuestas.sample(5))
+print()
+print('Vista previa del conjunto de datos de comunicaciones radicadas: ')
+print(radicados.sample(5))
+```
+
+**Características de los conjuntos de datos**
+
+```{python}
+# Detalles de los tipos de datos y cantidades no nulas
+print(f"Detalles del dataframe de radicados de respuestas a documentos recibidos: \n")
+print(respuestas.info())
+print()
+print(f"Detalles del dataframe de comunicaciones radicadas: \n")
+print(radicados.info())
+```
+
+# 2. Limpieza y transformación de los conjuntos de datos
+
+## 2.1 Modificación del tipo de variables
+
+Se cuenta con dos *datasets*: el primero agrupa la información de las respuestas a comunicaciones recibidas y el segundo corresponde a las comunicaciones radicadas. Ambos contienen cinco variables, entre las cuales se encuentra **FechaRadicacion**, que registra la fecha de radicación de un documento en el Sistema de Gestión Documental (SGD). En ambos casos este campo se encuentra definido inicialmente como tipo *object*, es decir, los valores se interpretan como texto y no como fechas. Dado que posteriormente será necesario realizar análisis por periodos de tiempo, resulta indispensable ajustar el tipo de dato a formato de fecha.
+
+Adicionalmente, la variable **NroRadicado**, común a ambos conjuntos de datos, presenta diferencias en su tipificación: en el dataframe *respuestas* se encuentra como tipo *object*, mientras que en el dataframe *radicados* aparece como tipo entero. Considerando que más adelante se requerirá combinar ambos conjuntos a través de esta variable, es pertinente unificar su tipo de dato para garantizar la correcta integración y consistencia en el procesamiento.
+
+```{python}
+
+# Cambiar el tipo de dato "object" a "fecha" (formato: YYYY-MM-DD HH:MM:SS.0) en los campos "FechaRadicacion"
+
+# En el dataframe de respuetas
+respuestas["FechaRadicacion"] = pd.to_datetime(
+    respuestas["FechaRadicacion"],
+    format="%Y-%m-%d %H:%M:%S.%f",
+    errors="coerce"
+)
+
+# En el dataframe de radicados
+radicados["FechaRadicacion"] = pd.to_datetime(
+    radicados["FechaRadicacion"],
+    format="%d/%m/%Y %H:%M:%S.%f",
+    errors="coerce"
+)
+
+```
+
+```{python}
+# Cambiar el tipo de dato "object" a "entero" en el campo "NroRadicado" en el dataframe "respuestas"
+
+respuestas["NroRadicado"] = respuestas["NroRadicado"].astype('int')
+```
+
+## 2.2 Generación de variables adicionales
+
+La variable **Respuesta** almacena (del dataframe "respuestas"), en un único campo, la información de una o varias respuestas asociadas a la misma comunicación radicada. Cada respuesta se registra con el número de radicado y la fecha correspondiente, separados por comas cuando existen múltiples valores. Esta estructura implica que un mismo registro puede contener desde una hasta varias respuestas (en algunos casos más de cuarenta), lo que dificulta su análisis directo.
+
+Para disponer de la información de manera estructurada y facilitar su procesamiento, es necesario **descomponer el contenido de la variable en columnas independientes**, de modo que cada respuesta quede representada en una variable distinta. En los casos en que un registro tenga menos respuestas que el máximo identificado, las columnas adicionales se completarán con valores nulos (*NaN*). Esta transformación garantiza que cada respuesta pueda ser tratada como un dato individual, permitiendo análisis más precisos y consistentes.
+
+```{python}
+# Dividir por comas (ejemplo de la info actual: 2019557382 (2019-05-27 08:35:31.0), 2019557381...)
+# Creando un dataframe auxiliar con las nuevas columnas
+respuestas_division = respuestas["Respuesta"].str.split(",", expand=True)
+
+# Renombrar de manera dinámica las columnas del dataframe auxiliar
+respuestas_division.columns = [f"Respuesta_{i+1}" for i in range(respuestas_division.shape[1])]
+
+# Agregar las columnas del dataframe auxiliar al dataframe de respuestas
+respuestas = respuestas.join(respuestas_division)
+```
+
+```{python}
+print(f"la mayor cantidad de respuestas registradas para un solo radicado es de: {len(respuestas_division.columns)}")
+```
+
+Adicional a la cantidad de respuestas por radicado es posible que el dataframe "respuesta" tenga más de un registro para el mismo radicado, esto se debe a que las respuestas se pueden haber tramitado por más de una "Ruta". El valor exacto de comunicaciones radicadas y respuestas generadas (esto es, registros únicos), según reporte del SGD, se observa así:
+
+```{python}
+# Número de radicados
+
+unicos_respuestas = respuestas['NroRadicado'].nunique()
+unicos_radicados = radicados['NroRadicado'].nunique()
+
+print(f"{unicos_radicados:,} comunicaciones recibidas o radicados y {unicos_respuestas:,} respuestas generadas")
+```
+
+Los datos disponibles en este análisis abarcan el siguiente periodo de tiempo
+
+```{python}
+# Periodo de tiempo de datos disponibles
+
+desde = min(min(respuestas['FechaRadicacion']), min(radicados['FechaRadicacion']))
+hasta = max(max(respuestas['FechaRadicacion']), max(radicados['FechaRadicacion']))
+
+print(f"Los registros incluyen datos desde el día {desde.strftime('%Y-%m-%d')} hasta el día  {hasta.strftime('%Y-%m-%d')}")
+```
+
+# 3. Identificación de información relevante
+
+El propósito de este informe es evaluar el trámite de las Peticiones, Quejas y Reclamos (PQRS), es decir, la gestión de las respuestas a las comunicaciones que recibe la entidad y que deben ser atendidas para los usuarios que las radican. Dado que no toda la información disponible en los conjuntos de datos corresponde a PQRS, resulta necesario identificar y seleccionar únicamente aquellas que sí lo son. Para lograrlo, se requiere filtrar los registros de acuerdo con la información específica contenida en determinados campos de interés de cada *dataframe*.
+
+**Radicados**
+
+-   **Campo *TipoDocumental***: se deben seleccionar los registros que incluyan las palabras *“PQRD”*, *“PETICION”* o *“QUEJA”*.
+
+-   **Campo *Descripción***: se deben seleccionar los registros que incluyan los textos *“PETICION”*, *“PECTION”*, *“PETCIOM”*, *“EPTICION”*, *“PECTICION”*, *“PETICON”*, *“DERECHO”*, *“DERCHO”* y *“DERECH”*.
+
+**Respuestas**
+
+-   **Campo *Asunto***: se deben seleccionar los registros que incluyan los textos *“PETICION”*, *“PETICIONES”*, *“PQRD”*, *“PQRSD”* o *“QUEJA”*.
+
+-   **Campo *Ruta***: se deben seleccionar los registros que incluyan el texto *“PQRS”*.
+
+```{python}
+# Definir los criterior o textos de filtro para cada campo
+
+# Criterios de filtro para el dataframe "radicados"
+tipo = ["PQRD","PETICION","QUEJA"]
+descripcion = ["PETICION", "PECTION", "PETCIOM", "EPTICION", "PECTICION", "PECTION", "PETICON", "DERECHO", "DERCHO", "DERECH"]
+
+# Criterios de filtro para el dataframe "respuestas"
+asunto = ["PETICION", "PETICIONES", "PQRD", "PQRSD", "QUEJA"]
+ruta = "PQRS"
+```
+
+Por si se necesita texto
+
+```{python}
+tipo_ = radicados['TipoDocumental'].str.contains("|".join(tipo), case=False, na=False)
+descripcion_ = radicados['Descripcion'].str.contains("|".join(descripcion), case=False, na=False)
+i = 0
+while i <= len(respuestas)
+```
+
+```{python}
+len(respuestas)
+```

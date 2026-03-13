@@ -1,0 +1,272 @@
+---
+title: "Informe de evaluación del proceso de trámite de Peticiones, Quejas y Reclamos - Introducción"
+format:
+  html:
+    page-layout: full
+jupyter: python3
+---
+
+# Planteamiento del problema y preguntas de análisis
+
+Periódicamente, una entidad oficial requiere evaluar la calidad del trámite de peticiones, quejas y reclamos (PQRS) radicadas en cualquiera de los canales de atención al ciudadano disponibles. En este caso, la calidad se mide a partir de un único atributo: la **oportunidad en la respuesta** ofrecida al ciudadano. Normativamente, se ha definido un límite de **15 días hábiles** (entendiendo como hábiles los días de lunes a viernes, excluyendo festivos dentro del rango mencionado).
+
+El área encargada de la evaluación busca responder las siguientes preguntas:
+
+1.  ¿Cuál es la cantidad de PQRS recibidas durante el periodo evaluado y cómo ha variado respecto al periodo anterior?\
+2.  ¿Qué proporción de PQRS fueron respondidas y qué proporción quedaron sin respuesta?\
+3.  ¿Qué proporción de PQRS se respondieron dentro del tiempo normativo?\
+4.  ¿Cuál es el tiempo promedio que tarda la entidad en responder una PQRS?\
+5.  ¿Cuáles son las áreas con mayor asignación de PQRS para su trámite?\
+6.  ¿Cómo se comporta cada área en términos de oportunidad y tiempo de respuesta?
+
+Al finalizar el análisis, los interesados deberán contar con un panorama claro del desempeño del proceso evaluado. Además, el archivo desarrollado servirá como base para agilizar la elaboración de informes posteriores: la herramienta proporciona tablas, gráficos y cálculos estadísticos que funcionan como insumos para el análisis.
+
+👉 [Ver análisis completo](frelance_pqrs_case.qmd)
+
+------------------------------------------------------------------------
+
+## Anexo - Disponibilidad de datos
+
+Con el fin de hacer público el proyecto, se realizaron modificaciones a los datos originales. A continuación se presenta el script utilizado para efectuar dichas transformaciones.
+
+```{python}
+#| eval: false
+#| echo: true
+
+# %% Importar librerías
+
+# Librería que permite interactuar con el sistema operativo a nivel de rutas, carpetas, archivos, variables del sistema, entre otras.
+import os
+# Librería que permite trabajar con caracteres Unicode, facilitando la normalización y manipulación de textos # (por ejemplo, eliminar tildes, acentos o descomponer caracteres especiales para su procesamiento uniforme).
+import unicodedata
+# Librería que permite trabajar (leer, manupular, excribir) con datos estructurados (tablas, hojas de calculo, bases de datos)
+import pandas as pd
+# Librería para generar procesos aleatorios
+import random
+# Librería para analizar (parsear) documentos HTML y XML. Permite navegar por el árbol de etiquetas, buscar tablas, filas, columnas, y extraer el texto limpio de cada elemento
+from bs4 import BeautifulSoup
+# Librería para hacer peticiones HTTP de manera sencilla. Se descarga el contenido de páginas web, configurando encabezados como el User-Agent para evitar bloqueos.
+import requests
+
+# %% Cargar datas
+
+# Crear lista de archivos que se almacenan en la carpeta "datas"
+archivos = os.listdir("datas")
+
+# Crear un diccionario vacío en el que se almacenarán datos en formato dataframe
+data = dict()
+# Leer cada archivo, convertilo a dataframe y almacenarlo en el diccionario
+for archivo in archivos:
+    if ".xls" in archivo:
+        data[archivo] = pd.read_excel(f"datas/{archivo}",
+                                      keep_default_na=False,
+                                      na_filter=False)
+del (archivo, archivos)
+
+temp = data.copy()
+
+# %% Cargar datos codificados de rutas
+
+rutas = pd.read_csv('datas/Rutas.csv')
+
+# Eliminar missing values
+rutas.dropna(inplace=True)
+
+# Crear una columna para reemplazos parciales
+rutas['Clean'] = rutas['Original'].str.replace(r'^.*- ', '', regex=True) \
+                                  .str.replace(r'\d+', '', regex=True) \
+                                  .str.strip()
+
+# Crear diccionarios para reemplazos en la data
+rutas_dependencias = dict(zip(rutas.iloc[:, 1], rutas.iloc[:, 2]))
+rutas_original = dict(zip(rutas.iloc[:, 1], rutas.iloc[:, 0]))
+
+# %% Preorganización de datas cargadas
+
+# Ajustar los nombres de columnas a lo que se dieron en el año 2017 para las datas de radicados
+reportes_columnas = ["NroRadicado", "TipoRadicado", "FechaRadicacion",
+                     "IdRemitente", "Remitente", "IdDestinatario",
+                     "Destinatario", "TipoDocumental", "Ruta", "FechaOrigen",
+                     "Descripcion", "Observacion", "Asunto", "Fuente",
+                     "TipoFuente", "Folios", "Prioridad", "UsuarioFirma",
+                     "FechaFirma", "UsuarioRadico", "RadicadoOrigen", "Sede"]
+
+# Ajustar los nombres de columnas a lo que se dieron en el año 2017 para las datas de respuestas
+respuestas_columnas = ["NroRadicado", "TipoRadicado", "Asunto",
+                       "FechaRadicacion", "Usuario", "Ruta", "Paso",
+                       "Actividad", "Tareasyestado", "Estado", "FechaEntrada",
+                       "FechaSalida", "RespuestaenElaboracion", "Respuesta"]
+
+# Seleccionar las columnas de interés.
+# Este ejercicio debería ser parte del desarrollo del informe, sin embargo, por temas de 
+# información a compartir, se reduce el dataset en este punto, en algunos puntos puede
+# aparecer información personal que es necesario ser excluída.
+for key in data.keys():
+    if "Respuesta" not in key:
+        data[key] = data[key].iloc[3:, :]
+        data[key].columns = reportes_columnas
+        data[key] = data[key].loc[:, ["NroRadicado", "Asunto",
+                                      "FechaRadicacion", "TipoDocumental", "Descripcion"]]
+    else:
+        data[key].columns = respuestas_columnas
+        data[key] = data[key].loc[:, ["NroRadicado", "Asunto",
+                                      "FechaRadicacion",
+                                      "Ruta", "Respuesta"]]
+
+del (respuestas_columnas, reportes_columnas, key)
+
+# %% Descargar data de Muncipios de Cundinamarca de wikipedia
+
+# Guardar dirección página web con la info de Municipios de Cundinamarca
+url = "https://es.wikipedia.org/wiki/Anexo:Municipios_de_Cundinamarca"
+# Asignar información del navegador, para poder acceder a las páginas de wikipedia
+headers = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:147.0) Gecko/20100101 Firefox/147.0"
+}
+# Traer información de la página
+req = requests.get(url, headers=headers)
+# Entregar codificación español latinoamérica
+req.encoding = "utf-8"
+# Leer arbol HTML de la página web
+soup = BeautifulSoup(req.text, "lxml")
+
+# Encontrar la tabla de municipios
+table = soup.find("table", {"class": "wikitable"})
+
+del (url, req, headers)
+
+# %% Función para quitar las tildes del texto
+
+def quitar_tildes(texto):
+    # Unir todos los caracteres "c" con join
+    return ''.join(
+        # NFD (Normalization Form Decomposition) que separa letras y acentos (tíldes)
+        # Tomar cada texto y separar por caracter (c) y los caracteres con acento
+        c for c in unicodedata.normalize('NFD', texto)
+        # Mn significa Mark, Nonspacing que marca los caracteres tipo tilde
+        # Excluir de la cadena en construcción las tildes
+        if unicodedata.category(c) != 'Mn')
+
+# %% Crear tablas de datos de municipios y provincias
+
+# Extraer filas de la tabla de municipios saltando encabezado
+rows = table.find_all("tr")[1:]
+
+# Construir diccionarios para guardar la info de muncipios y codigos para enmascarar
+municipios = {}
+provincias = {}
+
+# Generar números aleatorios
+numeros_municipios = iter(random.sample(range(1000, 3000), 1000))
+numeros_provincias = iter(random.sample(range(1500, 2500), 500))
+
+# Extraer la información de municipios y provincias de la tabla extraída con soup
+for row in rows:
+    cols = row.find_all("td")
+    if cols:
+        # Quitar tildes a los nombres de municipio y pasar a minúscula
+        nombre = quitar_tildes(cols[1].get_text(strip=True)).lower()
+        # Quitar tildes a los nombres de las provincias y pasar a minúscula
+        provincia = quitar_tildes(cols[2].get_text(strip=True)).lower()
+
+        # Asignar numero a cada provincia. Si la provincia aún no tiene numero, asignar el siguiente disponible
+        if provincia not in provincias.values():
+            provincias[next(numeros_provincias)] = provincia
+
+        # Asignar número al municipio
+        municipios[next(numeros_municipios)] = nombre
+
+# Crear una carpeta nueva llamada outputs para guadar los archivos a generar
+os.makedirs("outputs", exist_ok=True)
+
+pd.DataFrame(list(municipios.items()), columns=["Codigo", "Municipio"]).to_excel(
+    "outputs/municipios_mascaras.xlsx", index=False)
+
+pd.DataFrame(list(provincias.items()), columns=["Codigo", "Provincia"]).to_excel(
+    "outputs/provincias_mascaras.xlsx", index=False)
+
+del (cols, nombre, provincia, rows)
+
+# %% Complementar datos de muncipios y provincias
+
+entidades = pd.read_csv('datas/Entidad.csv')
+
+# Eliminar missing values
+entidades.dropna(inplace=True)
+
+# Crear diccionario para reemplazos en la data
+entidades = dict(zip(entidades.iloc[:, 1], entidades.iloc[:, 0]))
+
+# %% Función para reemplazo de valores
+
+def reemplazar(col, dicc):
+
+    # Reemplazar cada valor del nombre original de la provincia
+    for clave, valor in dicc.items():
+        col = col.str.replace(
+            str(valor).lower(), str(clave).lower(), regex=False)
+
+    return col
+
+# %% Función para identificar el texto de radicados
+
+def identificar_radicados(texto):
+    # Separar el texto en cada coma ","
+    contenido = texto.split(",")
+    # Crear lista vacía para guardar todos los radicados encontrados
+    resultado = []
+    # Cada texto separado es un numero de "radicados"
+    for radicado in contenido:
+        # Verificar si alguno de los caracteres del radicado es un numero
+        if any(char.isdigit() for char in radicado):
+            # Si el radicado incluye paréntesis de apertura (hay mas datos aparte del radicado)
+            if "(" in radicado:
+                # Dividir por partes el radicado segun cierre de paréntesis
+                # Seleccionar solo la primera parte y agregarle un paréntesis de cierre
+                parte = radicado.split(")")[0] + ")"
+                # Agregar el número de radicado procesado a la lista de radicados
+                resultado.append(parte.strip())
+    # Retornar todos los radicados en un solo texto
+    return ", ".join(resultado)
+
+# %% Reemplazar datos de region
+
+# Aplicar reemplazos en todos los dataframes fuente de datos
+# Recorrer cada df que está en el diccionarios data
+for key, df in data.items():
+    # Recorrer cada coulmna de cada df
+    for col in df.select_dtypes(include="object").columns:
+        # Normalizar toda la columna (quitar tíldes, pasar a minúscula)
+        df[col] = (
+            df[col]
+            # Reemplazar los NaN por vacio para poder manipular como texto
+            .fillna("")
+            .astype(str)  # Reafirmar los datos a tipo texto
+            .str.strip()  # Quitar espacios en blanco antes y después
+            .apply(quitar_tildes)  # Aplicar la función quitar tildes
+            .str.lower()  # Convertir a minúscula todo
+        )
+
+        # Reemplzara los valores por clave para cada diccionario en cada dataframe
+        for dicc in [rutas_original, rutas_dependencias, municipios, provincias, entidades]:
+            df[col] = reemplazar(df[col], dicc)
+
+        # Eliminar información de nombres personales en la columna Respuesta
+        # Deja solo el número de radicado y la fecha
+        if col == "Respuesta":
+            # Identificar los radicados de respuesta excluyendo la información innecesaria
+            df[col] = df[col].apply(identificar_radicados)
+
+del (col, df, key, numeros_municipios, numeros_provincias)
+
+# %% Escribir las datas en excel
+
+# Generar un archivo excel por cada tabla (dataframe)
+for nombre, tabla in data.items():
+    # Ajustar extensiones excel de los nombres almacenados como claves
+    nombre_xlsx = nombre.replace(".xls", ".xlsx")
+    # Escribir los archivos en una carpeta outputs
+    tabla.to_excel(f"outputs/{nombre_xlsx}", index=False)
+
+del (nombre_xlsx, nombre, tabla)
+```

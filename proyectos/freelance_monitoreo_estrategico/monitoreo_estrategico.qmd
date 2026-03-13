@@ -173,7 +173,7 @@ El desarrollo de la fórmula de una de las medidas aplicadas al avance físico s
 
 ------------------------------------------------------------------------
 
-``` dax
+```{DAX}
 EjecucionReal:=
 
 VAR VigenciaMax=
@@ -323,7 +323,7 @@ El desarrollo de la fórmula de unas de las medidas aplicadas al avance financie
 
 ------------------------------------------------------------------------
 
-``` dax
+```{DAX}
 Ppto_Definitivo:=
 DIVIDE(
     sum(
@@ -334,7 +334,7 @@ DIVIDE(
 
 ------------------------------------------------------------------------
 
-``` dax
+```{DAX}
 Ppto_Definitivo_VA:=
 VAR FechaMax = [FechaMaxFin]
 VAR VigenciaActual = [VigenciaActFin]
@@ -353,7 +353,7 @@ SUMX(
 
 ------------------------------------------------------------------------
 
-``` dax
+```{DAX}
 EsperadoEjecutado:=
 DIVIDE(
     [Ppto_Definitivo_VA],
@@ -399,7 +399,7 @@ El desarrollo de la fórmula de unas de las medidas aplicadas al avance físico 
 
 ------------------------------------------------------------------------
 
-``` dax
+```{DAX}
 AvanceRezago2024:=
 VAR VigenciaMax=2024
         
@@ -451,7 +451,7 @@ DIVIDE(
 
 ------------------------------------------------------------------------
 
-``` dax
+```{DAX}
 AvanceRezago2024_PondCuatrienio:=
 VAR VigenciaMax=2024
         
